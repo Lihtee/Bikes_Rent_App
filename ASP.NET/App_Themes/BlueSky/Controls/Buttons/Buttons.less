@@ -1,0 +1,81 @@
+@import '../../../BaseTheme/Controls/Buttons/Buttons.less';
+
+/**
+ * Файл визуального оформления кнопок.
+ * Тема BlueSky.
+ */
+
+
+.@{buttonClass} {
+    box-shadow: none;
+    text-decoration: none;
+    border-color: @buttonBorderColor;
+    border: none;
+    background: transparent;
+    margin: 0px;
+    font-size: 18px;
+
+    &:hover {
+        background: transparent;
+        color: @buttonBorderFocusColor;
+    }
+
+    &:focus {
+        outline: 0;
+        color: @buttonBorderFocusColor;
+    }
+
+    &:active {
+        box-shadow: none;
+    }
+}
+
+/* Кнопки. */
+.ics-btn,
+#popup_panel input[type="button"] {
+
+    color: #fff;
+    border: 2px;
+    margin-left: 5px;
+    padding: 5px;
+    box-shadow: none;
+    text-decoration: none;
+    line-height: 16px;
+    border-radius: 2px;
+    background: #7ba7d9;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+      color: #fff;
+    }
+    &:hover {
+        color: #fff;
+        opacity: 0.75;
+    }
+}
+#popup_panel input[type="button"] {
+  &:hover {
+      background: @buttonHoverBackgroundColor;
+  }
+}
+
+.ics-btn.disabled,
+.ics-btn[disabled] {
+    background-color: #fff;
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+/* Миксин кнопок с классом 'ics-btn' */
+.ics-btn() {
+    &:extend(.ics-btn);
+}
+
+/* Миксин кнопок с классом 'ics-btn'
+   в состоянии active. */
+.ics-btn-active() {
+    &:extend(.ics-btn:active);
+}
+
+@import "_Settings.less";

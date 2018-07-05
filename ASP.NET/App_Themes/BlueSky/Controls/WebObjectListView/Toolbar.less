@@ -1,0 +1,209 @@
+﻿/**
+ * Файл визуального оформления основного тулбара.
+ */
+.@{wolvHeaderClass} {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.@{wolvToolbarCaptionClass},
+.@{wolvToolbarLimitOptionsBtnClass} span.@{wolvToolbarCaptionClass},
+.@{wolvToolbarExportExcelOptionsBtnClass} span.@{wolvToolbarCaptionClass},
+.@{wolvToolbarConfigureColumnsOptionsBtnClass} span.@{wolvToolbarCaptionClass} {
+    display: none;
+}
+
+.@{wolvPagerClass},
+.@{wolvToolbarDynamiContainerClass} {
+    display: inline-block;
+    background-color: #fff;
+    margin: 8px 0;
+}
+.@{wolvToolbarActiveBtnClass} {
+    // добавление свойств из buttons.less
+    .ics-btn-active();
+}
+.@{wolvToolbarSeparatorClass} {
+  display: none;
+}
+// Панель поиска.
+.@{wolvToolbarSearchPanelClass} {
+    margin: 8px 0;
+
+    span {
+        display: inline-block;
+        padding: 4px;
+    }
+
+    br {
+        display: none;
+    }
+    // Кнопка поиска.
+    .@{wolvSearchPanelsearchBtnClass} {
+        color: #fff;
+        border: 2px;
+        margin-left: 5px;
+        padding: 5px 20px;
+        box-shadow: none;
+        text-decoration: none;
+        line-height: 16px;
+        border-radius: 2px;
+        background: #7ba7d9;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 0.75;
+        }
+    }
+}
+
+.@{wolvToolbarLimitEditBtnClass} .@{wolvToolbarBtnIconClass}:after {
+    content: "\e810";
+}
+
+.@{wolvToolbarRefreshBtnClass},
+.@{wolvToolbarEditBtnClass},
+.@{wolvToolbarDeleteBtnClass},
+.@{wolvToolbarSearchBtnClass},
+.@{wolvToolbarExportExcelBtnClass},
+.@{wolvToolbarConfigureColumnsBtnClass},
+.@{wolvToolbarFilterBtnClass},
+.@{wolvToolbarLimitEditBtnClass} {
+    border: none;
+    background-color: transparent !important;
+    &:disabled {
+      background-color: transparent !important;
+    }
+    .@{wolvToolbarBtnIconClass} {
+        font-family: 'BlueSky';
+    }
+}
+
+.@{wolvToolbarBtnClass} {
+  border: none;
+  &:hover {
+    color: @wolvToolbarBaseBtnHoverColor;
+    background-color: transparent;
+  }
+    box-shadow: none;
+  &:active {
+    box-shadow: none;
+  }
+}
+
+.@{wolvToolbarBtnIconClass} {
+  &:hover {
+      &:before {
+        color: @wolvToolbarBaseBtnHoverColor;
+    }
+  }
+}
+
+.@{wolvToolbarBtnIconClass} {
+    &:hover {
+      &:before {
+        color: @wolvToolbarBaseBtnHoverColor;
+
+        .@{wolvToolbarDeleteBtnClass}.ics-wolv-toolbar-button-delete-disabled &,
+        .@{wolvToolbarDeleteBtnClass}.ics-wolv-toolbar-button-delete-disabled:active &{
+          color: #999;
+        }
+        .@{wolvToolbarDeleteBtnClass} & {
+          color: @wolvToolbarDeleteBtnHoverIconColor;
+        }
+        .@{wolvToolbarRefreshBtnClass} & {
+          color: #38CF98;
+        }
+        .@{wolvToolbarEditBtnClass} & {
+          color: @wolvToolbarEditBtnHoverIconColor;
+        }
+        .@{wolvToolbarCreateBtnClass} & {
+          background-color: @wolvToolbarCreateBtnHoverIconColor;
+        }
+        .@{wolvToolbarLimitOptionsBtnClass} &,
+        .@{wolvToolbarExportExcelOptionsBtnClass} &,
+        .@{wolvToolbarConfigureColumnsOptionsBtnClass} &  {
+          color: @wolvToolbarEditBtnHoverIconColor;
+        }
+      }
+  }
+}
+
+// Переопределение иконок
+.@{wolvToolbarBtnIconClass} {
+    font-size: 21px;
+
+    .@{wolvToolbarCreateBtnClass} & {
+      margin-bottom: 5px !important;
+    }
+    &:before {
+        /* Кнопка обновления данных. */
+        .@{wolvToolbarRefreshBtnClass} & {
+            content: "\e807";
+            color: @wolvToolbarRefreshBtnIconColor;
+            font-size: 24px;
+        }
+        .@{wolvToolbarCreateBtnClass} & {
+            font-family: Arial,sans-serif;
+            font-size: 14px;
+            padding: 6px 12px;
+            content: "Создать";
+            background-color: @wolvToolbarCreateBtnIconColor;
+            color: #fff;
+            border-radius: 2px;
+            border: none;
+        }
+        /* Кнопка редактирования записи. */
+        .@{wolvToolbarEditBtnClass} & {
+            content: "\e810";
+        }
+        /* Кнопка удаления. */
+        .@{wolvToolbarDeleteBtnClass} & {
+            content: "\e814";
+        }
+        /* Кнопка поиска. */
+        .@{wolvToolbarSearchBtnClass} & {
+            content: "\e803";
+        }
+        /* Кнопка фильтрации.
+           Кнопка редактирования ограничений (фильтр). */
+        .@{wolvToolbarFilterBtnClass} &,
+        .@{wolvToolbarLimitEditBtnClass} & {
+            content: "\e809";
+            font-size: 20px;
+        }
+        /* Кнопка настроек столбцов. */
+        .@{wolvToolbarConfigureColumnsBtnClass} & {
+            content: "\e819";
+            font-size: 20px;
+        }
+        /* Кнопка экспорта в Excel. */
+        .@{wolvToolbarExportExcelBtnClass} & {
+            content: "\e80a";
+            font-size: 24px;
+        }
+        /* Кнопка опций ограничений и экспорта. */
+          .@{wolvToolbarLimitOptionsBtnClass} &,
+          .@{wolvToolbarExportExcelOptionsBtnClass} &,
+          .@{wolvToolbarConfigureColumnsOptionsBtnClass} &  {
+              content: "\f0d7";
+              color: @wolvToolbarCaretBtnIconColor;
+          }
+          /* Кнопка вкл/выкл древовидного режима для групп. */
+          .@{wolvToolbarGroupToggleBtnClass} & {
+              font-size: 24px;
+          }
+        /* Кнопка привязки (ОКН) */
+        .AddRelBtn & {
+            content: "Привязать";
+        }
+        /* Кнопка отвязки (ОКН) */
+        .DelRelBtn & {
+            content: "Отвязать";
+        }
+    }
+}
+
+/* Иконки внутри кнопок Toolbar. */
+
+@import (reference) "_Settings.less";

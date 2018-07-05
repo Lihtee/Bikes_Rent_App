@@ -1,0 +1,270 @@
+﻿/**
+ * Стили базовой темы.
+ * Контрол WebObjectListView.
+ */
+@import (reference) 'WolvClasses.less';
+
+@import "ContextMenu.less";
+@import "Pager.less";
+@import "Toolbar.less";
+@import "TableToolbar.less";
+
+@import "ViewColumnProvider.less";
+@import "HierarchySettings.less";
+@import "LimitEditSettings.less";
+
+// Ресайзеры колонок.
+.@{colresizeGrip} {
+    position: absolute;
+    z-index: 1;
+    width: 8px;
+    cursor: col-resize;
+}
+
+.@{colresizeGripForIe} {
+    position: absolute;
+    width: 0;
+}
+
+.@{colresizeDraggedGrip} {
+    width: 1px;
+    border-left: 1px @colresizeColor dotted;
+}
+
+.@{colresizeTableCell} {
+    overflow-x: hidden;
+}
+
+.@{colresizeLastColumn} {
+    width: auto;
+}
+
+
+/* Фильтрация. */
+td.@{wolvFilterCellClass} {
+    text-align: center;
+
+    .@{wolvFilterIconClass} {
+        cursor: pointer;
+        .font-icon-style();
+
+        &:before {
+            content: "\f0b0";
+            font-size: @wolvFilterIconSize;
+            color: @wolvFilterIconColor;
+        }
+
+        &:after {
+            content: "\f056";
+            margin-left: -5px;
+            vertical-align: bottom;
+            font-size: @wolvMinusIconSize;
+            color: @wolvMinusIconColor;
+        }
+    }
+}
+
+/* Тултип на форме фильтрации. */
+#@{wolvFilterTooltipClass} {
+    position: absolute;
+    border: 1px solid @wolvTooltipBorderColor;
+    background-color: @wolvTooltipBackgroundColor;
+}
+
+.@{wolvCellValue} {
+
+    input[type="checkbox"] {
+        width: 15px;
+        height: 15px;
+    }
+}
+
+/* Цветовая схема. */
+
+// Заголовок
+.@{wolvCaptionClass} > tbody > tr > td {
+    background: @wolvTableCaptionBackgroundColor;
+    color: @wolvTableCaptionColor;
+    font-weight: @wolvTableCaptionFontWeight;
+    border: @wolvTableCaptionBorder;
+    border-color: @wolvTableCaptionBorderColor;
+    }
+
+.@{tableContentClass} {
+
+    > tbody > tr {
+
+        // Чётные строки WOLV.
+        > td {
+            background: @wolvTableCellBackgroundColor;
+            color: @wolvTableCellColor;
+            border: @wolvTableCellBorder;
+            border-color: @wolvTableCellBorderColor;
+            cursor: pointer;
+        }
+
+        // Нечётные строки WOLV.
+        &.@{wolvOddRowClass} > td {
+            background: @wolvTableCellOddBackgroundColor;
+        }
+
+        // Вид строк WOLV при наведении на них указателя.
+        &:hover > td {
+            color: @wolvTableCellHoveredColor;
+            background: @wolvTableCellHoveredBackgroundColor;
+            border-color: @wolvTableCellHoveredBorderColor;
+        }
+        // Строка с измененным объектом WOLV.
+        > td.WOLVSO,
+        .@{wolvOddRowClass} > td.WOLVSO {
+            color: @wolvTableCellEditedColor;
+            background: @wolvTableCellEditedBackgroundColor;
+            border-color: @wolvTableCellEditedBorderColor;
+        }
+
+        // Отмеченные строки WOLV.
+        > td.@{wolvCheckedLineClass},
+        &:hover > td.@{wolvCheckedLineClass} {
+            color: @wolvTableCellCheckedColor;
+            background: @wolvTableCellCheckedBackgroundColor;
+            border-color: @wolvTableCellCheckedBorderColor;
+        }
+    }
+}
+
+/* Сортировка. */
+.@{wolvColumnSortOrderClass} {
+    color: @wolvSortColor;
+    font-size: 0.7em;
+}
+
+.@{wolvColumnSortDirectionClass} {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    vertical-align: middle;
+
+    &.@{wolvColumnSortAscClass} {
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        border-bottom: 4px solid @wolvSortColor;
+    }
+
+    &.@{wolvColumnSortDescClass} {
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        border-top: 4px solid @wolvSortColor;
+    }
+}
+
+.@{wolvColumnHeaderClass},
+.@{wrapperCellDataClass} {
+    cursor: pointer;
+}
+
+/* Перенос слов в заголовках. */
+.@{wolvColumnHeaderClass} {
+    .word-break-all();
+}
+
+/* Фиксированная шапка. */
+.@{wolvFixHeader} {
+    .@{contentCaptionClass} {
+        overflow: hidden;
+    }
+
+    .@{contentDataClass} {
+        overflow: auto;
+    }
+
+    .@{contentClass} {
+        overflow: visible;
+    }
+}
+
+.@{wolvNofixHeader} {
+    .@{contentCaptionClass} {
+        overflow: visible;
+        margin-right: 0;
+    }
+
+    .@{contentDataClass} {
+        overflow: visible;
+    }
+
+    .@{contentClass} {
+        overflow: auto;
+    }
+}
+
+// Настройки отображения невыбираемых родителей в иерархическом представлении WOLV.
+.@{wolvHierarchyGrayedRowClass} .@{wrapperCellDataClass} {
+    cursor: default;
+}
+
+// Скрытие ячеек в строках соответствующих группам.
+.@{wolvRowGroup} {
+    &.@{wolvOddRowClass} > td.ObjectListViewCellValue {
+      border-right-color: @wolvTableCellOddBackgroundColor;
+      border-left-color: @wolvTableCellOddBackgroundColor;
+        &:last-child {
+          border-right-color: @wolvTableCellBorderColor;
+        }
+    }
+
+    > td.ObjectListViewCellValue {
+      border-right-color: @wolvTableCellBackgroundColor;
+      border-left-color: @wolvTableCellBackgroundColor;
+        &:last-child {
+          border-right-color: @wolvTableCellBorderColor;
+        }
+
+        &.@{wolvCheckedLineClass} {
+            border-right-color: @wolvTableCellCheckedBackgroundColor;
+            border-left-color: @wolvTableCellCheckedBackgroundColor;
+              &:last-child {
+                border-right-color: @wolvTableCellCheckedBorderColor;
+              }
+        }
+    }
+
+    > td.ObjectListViewCellValue:hover {
+      border-right-color: @wolvTableCellHoveredBackgroundColor;
+      border-left-color: @wolvTableCellHoveredBackgroundColor;
+    }
+}
+
+.@{tableContentClass} {
+    & > tbody {
+          & > tr {
+            &.@{wolvRowGroup} {
+              &:hover {
+                  & > td.ObjectListViewCellValue {
+                      border-right-color: @wolvTableCellHoveredBackgroundColor;
+                      border-left-color: @wolvTableCellHoveredBackgroundColor;
+
+                      &:last-child {
+                        border-right-color: @wolvTableCellBorderColor;
+                      }
+
+                      &.@{wolvCheckedLineClass} {
+                        border-right-color: @wolvTableCellCheckedBackgroundColor;
+                        border-left-color: @wolvTableCellCheckedBackgroundColor;
+                          &:last-child {
+                            border-right-color: @wolvTableCellCheckedBorderColor;
+                          }
+                      }
+                  }
+              }
+          }
+      }
+  }
+}
+
+&.@{wolvOverflowWordWrapCellClass} {
+  span {
+    float: left;
+  }
+}
+
+@import '_Variables.less';

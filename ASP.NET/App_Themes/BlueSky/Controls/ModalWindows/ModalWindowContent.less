@@ -1,0 +1,137 @@
+﻿@import '../../../BaseTheme/Controls/ModalWindows/ModalWindowContent.less';
+
+/**
+ * Файл визуального оформления содержимого модальных окон.
+ */
+
+
+// Заголовок таблицы модального окна.
+.@{modalWindowTableCaptionClass} {
+    // Элемент в заголовке таблицы модального окна.
+    .@{modalWindowTableItemClass} {
+        background: #eff8ff;
+
+        .@{selectAllBtnClass},
+        .@{resetSortBtnClass} {
+            width: 15px;
+        }
+    }
+
+    .@{modalWindowTableItemClass} + .@{modalWindowTableItemClass} {
+        margin-left: -1px;
+    }
+}
+
+.@{sortBtnsClass} {
+    .@{sortBtnUpClass},
+    .@{sortBtnDownClass} {
+      color: @modalWindowUpDownBtnTextColor;
+      background: @modalWindowUpDownBtnBackgroundColor;
+      border: 1px solid @modalWindowUpDownBtnBorderColor;
+      height: 24px;
+      text-align: center;
+      padding: 0px;
+
+      &:hover {
+        background: @modalWindowUpDownBtnBackgroundHoverColor;
+      }
+    }
+}
+.@{modalWindowFooterClass} {
+  .@{footerOkBtnClass} {
+    padding: 5px 8px !important;
+
+    &:hover {
+      background: #90b5e0;
+    }
+  }
+
+  .@{footerSaveBtnClass} {
+    font-size: 0px;
+    margin-left: 0px;
+    padding: 0px;
+    vertical-align: sub;
+    width: 0px;
+    background: transparent;
+
+    &:before {
+      font-family: 'BlueSky';
+      font-size: 21px;
+      content: '\e80c';
+      color: #90b5e0;
+    }
+
+    &:hover {
+        &:before {
+            color: #468add;
+        }
+    }
+  }
+
+  #@{footerSettingsNameControlId} {
+      background: #fff;
+      margin-right: 10px;
+      min-width: 200px;
+      padding: 0 5px;
+  }
+}
+.@{modalWindowFooterClass} {
+  .@{footerOkBtnClass}{
+    padding: 5px 8px !important;
+    bottom: 8px;
+    right: 10px;
+  }
+}
+// Колонки таблицы модального окна.*/
+#sortable {
+    li {
+        background: #fff;
+
+        &:nth-child(even) {
+            background: @table-bg-odd;
+        }
+    }
+}
+
+.@{modalWindowContentsClass} {
+  input[type=checkbox] {
+    margin-right: 10px;
+  }
+
+  input[type=text], textarea {
+    border: none !important;
+
+    &:focus {
+      border: 1px solid @input-border-color !important;
+      border-radius: 2px;
+    }
+  }
+
+  select {
+    border: none !important;
+  }
+}
+
+// Закрашивание строк таблицы.
+.@{tableColumnsListClass} #sortable {
+
+    li.disabled {
+        background: #ccc;
+
+        input[type="text"],
+        select {
+            background: #ddd;
+            box-shadow: none;
+        }
+    }
+}
+
+
+// Футер модального окна.*/
+.@{modalWindowFooterClass} {
+    border-top: 1px solid #e4e4e4;
+    background: #e5f1ff;
+}
+
+
+@import '_Settings.less';

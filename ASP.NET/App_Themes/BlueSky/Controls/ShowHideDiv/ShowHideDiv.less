@@ -1,0 +1,94 @@
+﻿@import '../../../BaseTheme/Controls/ShowHideDiv/ShowHideDiv.less';
+
+/**
+ * Файл визуального оформления контрола ShowHideDiv.
+ */
+
+ .@{showHideDivClass} {
+     display: block;
+     padding: 0px;
+     border: 1px solid #d4e2f2;
+     padding: 0px;
+     border-radius: 5px;
+     margin-bottom: 10px;
+     margin-top: 10px;
+     margin-right: 15px;
+     background-color: #f1f7ff;
+     > fieldset {
+         border: none;
+         padding: 0;
+         margin: 0px;
+
+         > legend {
+             display: block;
+             border-radius: 5px;
+             width: 100%;
+             padding: 0;
+             font-size: @showHideDivCaptionSize;
+         }
+         .@{showHideDivContentClass} {
+           border-bottom-left-radius: 5px;
+           border-bottom-right-radius: 5px;
+           padding-left: 10px;
+           background: @showHideDivSecondBackgroundColor;
+         }
+     }
+ }
+ .@{showHideDivCollapsedClass} {
+       background-color: #f1f7ff;
+       padding: 5px 10px;
+
+       .@{showHideDivLinkClass} {
+           border-radius: 5px;
+           display: block;
+           padding: 7px 2px;
+           vertical-align: middle;
+           &:hover {
+             color: @showHideDivTextColor !important;
+           }
+       }
+ }
+ .@{showHideDivExpandedClass} {
+   background-color: transparent;
+   border: 1px solid #e4e4e4;
+   padding: 5px 10px;
+
+   .@{showHideDivLinkClass} {
+       border-radius: 5px;
+       border-bottom-left-radius: 0px;
+       border-bottom-right-radius: 0px;
+       display: block;
+       padding: 7px 2px;
+       vertical-align: middle;
+       &:hover {
+         color: @showHideDivTextColor !important;
+       }
+   }
+ }
+
+// Хак для Firefox
+ @-moz-document url-prefix() {
+    .@{showHideDivCollapsedClass} {
+       padding: 5px 10px 1px 10px;
+     }
+ }
+
+ .@{showHideDivIconClass} {
+   margin-top: -3px;
+
+     &:before {
+         font-size: @showHideDivIconSize;
+
+         .@{showHideDivExpandedClass} & {
+             content: "\f077";
+             color: @showHideDivIconCloseColor;
+         }
+
+         .@{showHideDivCollapsedClass} & {
+             content: "\f054";
+             color: @showHideDivIconOpenColor;
+         }
+     }
+ }
+
+@import "_Settings.less";

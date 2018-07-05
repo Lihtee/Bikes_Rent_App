@@ -1,0 +1,217 @@
+﻿@import '../../../BaseTheme/Controls/AjaxGroupEdit/AjaxGroupEdit.less';
+/**
+ * Файл визуального оформления AjaxGroupEdit темы BlueSky.
+ */
+
+/* Тулбар. */
+.@{ageToolbar} {
+    display: block;
+    margin: 16px 0;
+
+    .@{buttonClass} {
+        border: 0;
+        font-size: 21px;
+    }
+}
+
+.@{ageToolbarButtonCreate},
+.@{ageToolbarButtonDelete},
+.@{ageToolbarButtonEdit},
+.@{ageToolbarButtonMoveup},
+.@{ageToolbarButtonMovedown} {
+    border: none;
+    box-shadow: none;
+    height: 24px;
+    width: 24px;
+    background: none;
+    font-size: 16px;
+    padding: 4px 3px 3px;
+    margin: 5px;
+
+    &:hover {
+        border-color: none;
+        box-shadow: none;
+
+        &:before {
+            color: #468add;
+        }
+    }
+}
+
+.@{ageToolbarButtonMoveup},
+.@{ageToolbarButtonMovedown} {
+    &:hover {
+        border-color: none;
+
+        &:before {
+            color: @ageToolbarButtonMoveHoverIconColor;
+        }
+    }
+}
+
+.@{ageToolbarButtonCreate} {
+    width: 84px;
+    height: 34px;
+    margin-right: 10px !important;
+
+    &:before {
+        font-family: Arial,sans-serif;
+        font-size: 14px;
+        padding: 6px 12px;
+        content: "Создать";
+        background-color: @ageToolbarButtonCreateIconColor;
+        color: #fff;
+        border-radius: 2px;
+        border: none;
+    }
+
+    &:hover {
+        border-color: none;
+
+        &:before {
+            background-color: @ageToolbarButtonCreateHoverIconColor;
+            color: #fff;
+        }
+    }
+}
+
+.@{ageToolbarButtonDelete} {
+  height: 26px;
+    &:before {
+        font-family: 'BlueSky';
+        content: "\e814";
+        color: @ageToolbarButtonDeleteIconColor;
+    }
+
+    &:hover {
+        border: none;
+
+        &:before {
+            color: @ageToolbarButtonDeleteHoverIconColor;
+        }
+    }
+}
+
+.@{ageToolbarButtonEdit} {
+    &:before {
+        font-family: 'BlueSky';
+        content: "\e810";
+        color: @ageToolbarButtonEditIconColor;
+    }
+
+    &:hover {
+        border: none;
+
+        &:before {
+            color: @ageToolbarButtonEditHoverIconColor;
+        }
+    }
+}
+
+.@{ageToolbarButtonMoveup} {
+    margin-left: 7px !important;
+
+    &:before {
+        font-family: 'BlueSky';
+        content: "\e820";
+        color: @ageToolbarButtonMoveupIconColor;
+    }
+}
+
+.@{ageToolbarButtonMovedown} {
+    margin-left: 7px !important;
+
+    &:before {
+        font-family: 'BlueSky';
+        content: "\e81f";
+        color: @ageToolbarButtonMovedownIconColor;
+    }
+}
+
+.@{wgeTableClass} {
+  > tbody > tr > td {
+      tr.wge-group-row td {
+        background-color: #fff;
+      }
+  }
+
+  input[type=checkbox] {
+    margin-right: 10px;
+  }
+
+  input, textarea {
+    border: none !important;
+
+    &:focus {
+      border: 1px solid @input-border-color !important;
+      border-radius: 2px;
+    }
+  }
+
+  select, span {
+    border: none !important;
+  }
+
+  .@{wgeTableWrapperCellDataClass} {
+      .@{lookupClass} span {
+          padding: 0px;
+        }
+  }
+}
+
+/*Смена раскраски гранци таблицы на вертикальную зебру без боковых границ.
+Для отключения поменяйте @BlueSkyTableStyle на false */
+.mixin(@BlueSkyTableStyle) {
+  & when (@BlueSkyTableStyle = true) {
+    .@{wgeWrapperClass} {
+        .@{wgeTableParentClass} {
+            > .@{wgeTableClass} {
+
+                > tbody {
+                    > tr.@{wgeTableCaptionClass} > td {
+                        font-weight: normal;
+                        border-width: 0px;
+                        border-bottom: 1px solid #e4e4e4;
+                    }
+
+                    > tr:not(:first-child) > td {
+                        border-width: 0px;
+                        border-top: 1px solid #e4e4e4;
+                    }
+                }
+
+                tr.@{wgeTableCaptionClass} td {
+                    font-weight: normal;
+                }
+
+                .@{buttonClass} {
+                    border: none;
+                }
+            }
+        }
+    }
+
+    //Вертикальный тип закраски зебра
+    .@{wgeTableClass} {
+      // Нечётные строки AGE.
+        > tbody > tr {
+          &.@{wgeTableDataAlternateRowClass} > td {
+              background: @wolvTableCellBackgroundColor;
+          }
+        }
+        // Нечётные столбцы.
+        > tbody > tr >td:nth-child(even) {
+            background: @wgeTableDataAlternativeRowBackgroundColor;
+        }
+        > tbody > tr > {
+            &:hover >td {
+              background: @wgeTableDataRowHoveredBackgroundColor;
+          }
+        }
+    }
+  }
+}
+
+.mixin(@BlueSkyTableStyle);
+
+@import '_Settings.less';

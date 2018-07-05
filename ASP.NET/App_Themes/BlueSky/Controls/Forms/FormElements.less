@@ -1,0 +1,138 @@
+﻿@import "../../../BaseTheme/Controls/Forms/FormElements.less";
+
+/**
+ * Файл визуального оформления дефолтных контролов.
+ */
+
+
+/* Текстовые поля. */
+input {
+    &[type="text"],
+    &[type="password"],
+    &[type="datetime"],
+    &[type="date"],
+    &[type="time"] {
+        margin: 2px 0;
+        border: none;
+        border-bottom: 1px solid @input-border-color;
+        height: @input-height-base ;
+        background-color: @input-bg;
+        &:focus {
+            outline: none;
+            background-color: @input-bg;
+            border-color: @input-border-color;
+        }
+    }
+}
+
+input[type="text"] {
+    .@{disableClass}, .@{readonlyClass},
+    &[disabled], &[readonly] {
+        border-bottom: 1px solid @readonly-border-color;
+    }
+}
+
+input[type="checkbox"]:focus {
+  outline: none;
+}
+
+.wge-new-row input {
+    &[type="text"],
+    &[type="password"],
+    &[type="datetime"],
+    &[type="date"],
+    &[type="time"] {
+      background-color: @input-bg;
+    }
+}
+
+.readonly() {
+    &.@{readonlyClass}, &[readonly],
+    &.@{readonlyClass}:focus, &[readonly]:focus {
+        //border: none !important;
+    }
+}
+
+input[type="checkbox"]:after {
+    content: "";
+    display: inline-block;
+    font-family: FontAwesome;
+    font-size: 14px;
+    height: 14px;
+    width: 15px;
+    background: #fff;
+    position: relative;
+    border-radius: 3px;
+    border: 1px solid #7ba7d9;
+    background: #f1f8ff;
+}
+
+input {
+  &[type="checkbox"]:checked {
+    &:after{
+      font-family: "BlueSky";
+      content: '\e805';
+  	  color: #7ba7d9;
+      border-color: #7ba7d9;
+      font-size: 15px;
+      border-left: none;
+      width: 16px;
+    }
+  }
+}
+
+input {
+  &[type="checkbox"]:indeterminate {
+    &:after{
+      font-family: FontAwesome;
+      content: '\f0c8';
+      color: #7ba7d9;
+      border-color: #7ba7d9;
+      font-size: 11px;
+      padding: 2px;
+      padding-left: 2px;
+      padding-top: 2px;
+      width: 11px;
+      height: 10px;
+    }
+  }
+}
+
+input[type="checkbox"] {
+    margin: 3px 7px 5px 4px;
+    -webkit-appearance: none;
+    cursor: default;
+    .@{disableClass}, .@{readonlyClass},
+    &[disabled], &[readonly] {
+        -webkit-appearance: checkbox;
+        background: transparent;
+        &:after {
+            border: 1px solid #d0cfcf;
+            color: #d0cfcf;
+            background: #f9f9f9;
+        }
+    }
+}
+
+/* Многострочные текстовые поля. */
+textarea {
+    resize: vertical;
+    margin-bottom: 0px;
+}
+
+/* Выпадающие списки. */
+select {
+    &:extend(input[type=text]);
+
+    &:focus {
+        &:extend(input[type=text]:focus);
+    }
+}
+
+.@{pageMenuTreeClass} a {
+  img {
+    margin-right: 5px;
+  }
+}
+
+@import '_Settings.less';

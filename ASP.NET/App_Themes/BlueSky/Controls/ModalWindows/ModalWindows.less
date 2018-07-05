@@ -1,0 +1,18 @@
+﻿@import "ModalWindowContent.less";
+@import "ModalWindowWrapper.less";
+
+// Заголовок таблицы модального окна.
+.@{modalWindowTableCaptionClass} {
+    display: table;
+    // Иначе при sticky, шапка будет уезжать на всю ширину окна.
+    table-layout: fixed;
+    border-color: #fff;
+}
+
+// Футер модального окна.
+.@{modalWindowFooterClass} {
+  .@{footerOkBtnClass} {
+    margin-top: 5px;
+    padding: 5px 20px;
+  }
+}

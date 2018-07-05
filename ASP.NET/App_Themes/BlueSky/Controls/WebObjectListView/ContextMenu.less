@@ -1,0 +1,30 @@
+﻿@import "../../../BaseTheme/Controls/WebObjectListView/ContextMenu.less";
+
+/* Файл визуального оформления контекстного меню. */
+
+.@{contextMenuClass} {
+    margin-top: 7px;
+    border-radius: 5px;
+    .@{contextMenuItemClass} {
+        background-color: @wolvContextMenuBackgroundColor;
+        padding: 10px 20px;
+        color: #7ba7d9;
+        font-size: 14px;
+        &:hover {
+            background-color: #f5f8ff;
+        }
+
+        &:first-child {
+            padding-top: 20px;
+            border-top-right-radius: 5px;
+            border-top-left-radius: 5px;
+          }
+        &:last-child {
+            padding-bottom: 20px;
+            border-bottom-right-radius: 5px;
+            border-bottom-left-radius: 5px;
+          }
+    }
+}
+
+@import "_Settings.less";

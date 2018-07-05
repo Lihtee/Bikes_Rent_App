@@ -1,0 +1,68 @@
+﻿@import '../../../BaseTheme/Controls/Lookup/Lookup.less';
+
+/**
+ * Файл визуального оформления контрола Lookup.
+ * Тема BlueSky.
+ */
+
+
+.@{clearfixClass} {
+    .@{descLblClass} {
+        padding: 4px 10px;
+    }
+}
+.@{lookupMainClass} {
+    .@{lookupClass} {
+        > input {
+          padding-left: 1px;
+          padding-right: 70px;
+        }
+    }
+    span {
+      white-space: nowrap;
+      overflow: hidden;
+      max-width: 150px;
+      border-bottom: 1px solid @input-border-color;
+    }
+}
+/**
+ * Лукап в модальном окне.
+ */
+.@{lookupFormClass} > body {
+    margin: 0px;
+    height: auto;
+    .@{wolvHeaderClass} {
+      margin-right: 5px;
+    }
+    .ics-wolv-footer {
+      margin-right: 5px;
+    }
+}
+
+// Кнопка "Выбрать".
+.@{lookupLookupBtnClass} {
+    font-family: 'BlueSky';
+    font-size: @lookupLookupBtnSize;
+    &:before {
+        content: @lookupLookupBtnIcon;
+    }
+}
+
+// Кнопка "Очистить".
+.@{lookupClearBtnClass} {
+    font-family: 'BlueSky';
+    font-size: @lookupClearBtnSize;
+    &:before {
+        content: @lookupClearBtnIcon;
+    }
+}
+
+// Кнопка "Показать объект".
+.@{lookupShowObjectBtnClass} {
+    font-family: 'BlueSky';
+    font-size: @lookupShowObjectIconSize;
+    &:before {
+        content: @lookupShowObjectBtn;
+    }
+}
+@import '_Settings.less';

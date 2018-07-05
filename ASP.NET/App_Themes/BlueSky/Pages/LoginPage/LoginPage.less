@@ -1,0 +1,106 @@
+﻿@import '../../../BaseTheme/Pages/LoginPage/LoginPage.less';
+
+/**
+ * Файл визуального оформления формы входа.
+ */
+ /* Страница входа. */
+ .@{loginFormPageClass} {
+
+     /* Заголовок страницы входа.*/
+     background: @loginFormPageBackgroundColor;
+
+     .@{loginFormPageHeaderClass} {
+       color: @loginFormPageHeaderTextColor;
+       padding: 30px;
+       font-family: @loginFormClassFontFamily;
+       background: @loginFormPageHeaderColor;
+     }
+
+     /* Форма входа. */
+     .@{loginFormClass} {
+       display: block;
+       position: absolute;
+       top: 35%;
+       left: 50%;
+       margin-top: -165px;
+       margin-left: -150px;
+       box-shadow:  @loginFormClassBoxShadow;
+       height: 330px;
+       width: 300px;
+
+       &:after{
+        content: "";
+        display: block;
+        width: 300px;
+        background: #E5F1FF;
+        height: 60px;
+        margin-left: -32px;
+        margin-top: 11px;
+      }
+
+       /* Заголовок окна входа*/
+       h2 {
+         font-family: @loginFormClassFontFamily;
+         font-size: 19px;
+         line-height: 16px;
+         font-weight: 400;
+         margin: 15px 0px 50px 0px;
+         color: #000;
+      }
+
+      label {
+        margin-top: 10px;
+      }
+
+      /* Footer формы входа */
+      .actions {
+        position: absolute;
+        bottom: 0;
+        display: block;
+        padding: 10px;
+        width: 100%;
+        height: 50px;
+        background-color: #e6f1ff;
+        border-bottom-right-radius: 5px;
+        border-bottom-left-radius: 5px
+      }
+
+         /* Кнопка "Войти". */
+         .@{loginFormBtnClass} {
+            box-shadow: none;
+            padding: 0px 20px;
+            margin-top: 20px;
+            margin-right: -20px;
+            height: 32px;
+            font-size: 15px;
+            background: @loginFormBtnColor;
+            color: #fff;
+            border-color: @loginFormBtnColor;
+            float: right;
+            &:hover{
+              background-color: @loginFormBtnHover;
+              border-color: @loginFormBtnHover;
+            }
+         }
+
+         /* Поля для ввода*/
+         .@{loginFormInputClass} {
+             height: @input-height-base;
+             border-width: 0 0 1px 0;
+             margin-bottom: 36px;
+             font-size: 17px;
+             color: @loginFormInputColor;
+             background: #fff;
+             border-radius: 0px;
+             &:focus{
+               border-color: @loginFormInputFocusColor;;
+             }
+         }
+
+         .validator {
+           font-size: 13px;
+         }
+     }
+ }
+
+@import "_Settings.less";

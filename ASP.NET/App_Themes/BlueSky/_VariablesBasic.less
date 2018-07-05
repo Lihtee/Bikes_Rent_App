@@ -1,0 +1,167 @@
+﻿/**
+ * Файл содержащий базовые переменные темы BlueSky
+ */
+
+
+//== Цвета.
+//
+
+@gray-base:              #000;
+@gray-darker:            lighten(@gray-base, 13.5%); // #222
+@gray-dark:              lighten(@gray-base, 20%);   // #333
+@gray:                   lighten(@gray-base, 33.5%); // #555
+@gray-light:             lighten(@gray-base, 46.7%); // #777
+@gray-lighter:           lighten(@gray-base, 93.5%); // #eee
+@blue-dark:              #4f73b0;
+@blue-light:             #f1f7ff;
+@header-text-color:      #fff;
+
+@basic-color-first          : #e2e8f5;                    // светло-сиреневый (шапка, пункты бокового меню, волв)
+@basic-color-second         : @gray-lighter;              // светло-серый (навигация, контролы, подвал)
+@basic-color-third          : #7ba7d9;                    // темно-синий (заголовок в шапке, ссылки)
+
+/*@brand-primary:         #e2e8f5;       // Основной цвет.
+@brand-success:         #5cb85c;
+@brand-info:            #5bc0de;
+@brand-warning:         #f0ad4e;
+@brand-danger:          #d9534f;*/
+
+
+//== Настройки страницы.
+//
+
+@body-bg                  : #fff;
+@text-color               : @gray-light;
+@line-height-base         : 16px;
+
+/* Шапка. */
+//@header-bg                : @basic-color-first;
+@header-bg                : @blue-dark;
+@header-color             : @text-color;
+
+/* Строка навигации. */
+//@nav-bg                 : @basic-color-second;
+@nav-bg                 : @blue-light;
+@nav-color              : @gray-dark;
+
+
+/* Боковое меню. */
+@sidebar-bg                     : lighten(@basic-color-first, 5%); //#f2f4fa f5f7fc;
+@sidebar-color                  : @gray-dark;
+@sidebar-bg-elem-hover          : lighten(@basic-color-first, 50%); //#e7ecf6 e7ecf6;
+@sidebar-bg-elem-current        : @sidebar-bg;
+@sidebar-color-elem-hover       : @gray-base;
+@sidebar-color-elem-current     : @sidebar-color;
+
+/* Блок контента. */
+@content-bg               : @body-bg;
+@content-color            : @text-color;
+
+/* Подвал. */
+@footer-bg                : @basic-color-second;
+@footer-color             : @text-color;
+
+
+//== Типография.
+//
+
+/* Ссылки. */
+@link-color         : @basic-color-third;
+@link-color-hover   : #ff4800;
+@link-color-active  : @link-color;
+@link-color-visited : @link-color;
+
+/* Заголовки. */
+/*@heading-color    : @gray-darker;*/
+@heading-weight   : bold;
+
+/* Шрифт. */
+@font-family-text     : Arial, sans-serif; //"Helvetica Neue", Helvetica, Arial, sans-serif;
+@font-family-headings : Arial, sans-serif; //"HelveticaNeue", "Helvetica Neue", Helvetica, Arial, serif;
+
+/* Размер шрифтов. */
+@font-size-larger     : 1.5em;
+@font-size-large      : 1.25em;
+@font-size-base       : 14px;
+@font-size-small      : 0.85em;
+@font-size-mini       : 0.75em;
+
+
+//== Таблицы.
+//
+
+@table-caption-bg               : #fff;                             // Фон ячейки заголовка таблицы.
+@table-caption-text-color       : #777;                             // Цвет текста в ячейке заголовка таблицы.
+@table-caption-font-weight      : bold;                             // Начертание текста ячейки заголовка таблицы.
+@table-caption-border-color     : #e4e4e4;                          // Цвет границ ячейки заголовка таблицы.
+@table-caption-border           : 1px solid;                        // Ширина и тип границ ячейки заголовка таблицы.
+
+@table-bg-even                  : #fff;                             // Фон ячеек чётной строки таблицы.
+@table-bg-odd                   : #fafafa;                          // Фон ячеек нечётной строки таблицы.
+@table-text-color               : #333;                             // Цвет текста в ячейке таблицы.
+@table-border                   : 1px solid;                        // Ширина и тип границ ячейки таблицы.
+@table-border-color             : #e4e4e4;                          // Цвет границ ячейки таблицы.
+
+@table-edited-bg                : #a8ffcc;                          // Фон отредактированной ячейки таблицы.
+@table-edited-text-color        : #000;                             // Текст отредактированной ячейки таблицы.
+@table-edited-border-color      : 7ba7d9;                           // Цвет границ отредактированной ячейки.
+
+@table-checked-bg               : #f5f8ff;                          // Фон отмеченной ячейки таблицы.
+@table-checked-text-color       : #747474;                          // Цвет текста в отмеченной ячейке таблицы.
+@table-checked-border-color     : #e4e4e4;                          // Цвет границ отмеченной ячейки таблицы.
+
+@table-hover-bg                 : #f5f8ff;                          // Фон ячейки таблицы при наведении указателя.
+@table-hover-text-color         : #000;                             // Текст в ячейке при наведении указателя.
+@table-hover-border-color       : @table-border-color;              // Цвет границ ячейки при наведении указателя.
+
+
+//== Кнопки.
+//
+/*
+@btn-bg: ;
+@btn-color: ;
+@btn-bg-hover: ;
+@btn-color-hover: ;
+@btn-font-size: ;
+@btn-font-weight: ;
+@btn-padding: ;*/
+
+
+//== Форма редактирования.
+//
+@input-height-base          : 27px;
+@padding-base-vertical      : 1px;
+@padding-base-horizontal    : 1px;
+@input-bg                   : @input-bg-tr; //#fff;
+@input-bg-tr                : transparent;
+@input-border-color         : #b1cae8;
+@input-border-radius        : 0px;
+@disabled-bg                : transparent;
+@disabled-color             : #999999;
+@disabled-border-color      : #e4e4e4;
+@readonly-bg                : transparent;
+@readonly-color             : #999999;
+@readonly-border-color      : #e4e4e4;
+
+
+//== Пейджер.
+//
+@pager-height               : @input-height-base - 2px; // Высота элементов в пейжере WOLV'а.
+
+
+//== Модальные окна.
+//
+@modal-bg                   : #fff;
+@modal-header-bg            : #fff;
+@modal-border-color         : #fff;
+@modal-border-width         : 0px;
+@modal-border-radius        : 5px;
+@modal-title-font-size      : 19px;
+@modal-title-font-color     : #000;
+@modal-title-font-weight    : 400;
+
+
+
+/*Смена раскраски гранци таблицы на вертикальную зебру без боковых границ.
+Для отключения поменяйте @wolvBlueSkyTableStyle на False */
+@BlueSkyTableStyle: true;

@@ -1,0 +1,72 @@
+﻿@import '../../../BaseTheme/Controls/WebObjectListView/WebObjectListView.less';
+
+/**
+ * Файл визульного оформления контрола WebObjectListView темы Spring.
+ */
+
+@import 'Toolbar.less';
+@import 'Pager.less';
+@import 'ContextMenu.less';
+@import "TableToolbar.less";
+@import "LimitEditSettings.less";
+@import "HierarchySettings.less";
+
+.@{contentClass} {
+    margin: 24px;
+
+    .@{contentDataClass} > table {
+        overflow-y: auto;
+        overflow-x: auto;
+    }
+}
+
+.@{objectListViewTableClass} {
+    border-collapse: collapse;
+}
+
+
+// Фильтрация.
+.@{wolvFilterCell} {
+    select {
+        margin: 0 0 4px 0;
+    }
+
+    select.@{wolvFilterSelectClass},
+    select.FilterOperationSelect,
+    input[type="text"] {
+        .border-box();
+        width: 100%;        
+        min-height: 30px;
+        margin: 0;
+    }
+}
+
+// Тултип на форме фильтрации.
+#@{wolvFilterTooltipClass} {
+    padding: 16px;
+    .border-radius(7px);    
+    -moz-box-shadow: 1px 1px 10px @wolvTooltipBoxShadowColor;
+    -webkit-box-shadow: 1px 1px 10px @wolvTooltipBoxShadowColor;
+    box-shadow: 1px 1px 10px @wolvTooltipBoxShadowColor;
+}
+
+// Вспомогательный элемент для синхронизации ширины элементов.
+.@{wolvDataInnerForScrollClass} {
+    display: block;
+    width: 100%;
+    height: 10px;
+    line-height: 0;
+    margin-top: -10px;
+}
+
+ // Настройки иерархического отображения.
+.@{tableContentClass} {
+    > tbody > tr.@{wolvHierarchyGrayedRowClass} {
+        &:hover > td {
+            cursor: default;
+            background: none;
+        }
+    }
+}
+
+@import "_Settings.less";

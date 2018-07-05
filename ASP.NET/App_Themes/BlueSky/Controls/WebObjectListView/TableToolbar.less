@@ -1,0 +1,79 @@
+﻿@import "../../../BaseTheme/Controls//WebObjectListView/TableToolbar.less";
+
+/**
+ * Файл визуального оформления тулбара в таблице.
+ */
+ .@{wolvMiniToolBarClass} {
+
+     .@{wolvCheckBoxClass} {
+         //padding: 9px;
+         //margin: 0 5px;
+         vertical-align: middle;
+     }
+
+    .@{wolvMiniToolBarBtnsClass} {
+        &:hover {
+            color: @wolvToolbarBaseBtnColor !important;
+        }
+
+        /*
+         * Кнопка "Редактировать".
+         */
+        &.@{wolvEditBtnClass} {
+            color: @tableToolbarEditBtnColor;
+            &:hover {
+                color: @tableToolbarEditBtnHoverColor !important;
+            }
+            .checkedline & {
+                color: @tableToolbarEditBtnHoverColor;
+            }
+        }
+        /**
+         * Кнопка "Создать на основе."
+         */
+        &.@{wolvPrototypeBtnClass} {
+            &:before {
+                content: "\f067";
+            }
+
+            &:hover {
+                color: @tableToolbarPrototypeBtnHoverColor !important;
+            }
+        }
+        /**
+         * Кнопка "Просмотреть".
+         */
+        &.@{wolvViewBtnClass} {
+
+            &:before {
+                content: "\f06e";
+                font-family: FontAwesome;
+            }
+
+            &:hover {
+                color: @tableToolbarViewBtnHoverColor !important;
+            }
+        }
+        /**
+         * Кнопка "Удалить".
+         */
+        &.@{wolvDeleteBtnClass} {
+          color: @tableToolbarDeleteBtnColor;
+          &:hover {
+              color: @tableToolbarDeleteBtnHoverColor !important;
+          }
+          .checkedline & {
+              color: @tableToolbarDeleteBtnHoverColor;
+          }
+        }
+
+        &.ics-wolv-row-button-locked {
+          &:before {
+            font-family: FontAwesome;
+          }
+        }
+     }
+
+}
+
+@import (reference) "_Variables.less";

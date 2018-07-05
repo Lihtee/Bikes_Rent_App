@@ -1,0 +1,21 @@
+@import '../../../BaseTheme/Controls/DateTimePicker/DateTimePicker.less';
+/**
+ * Файл визуального контрола DateTimePicker.
+ * Тема Default.
+ */
+.@{datepickerClass} {
+    input[type="text"] {
+        height: 26px;
+        border: none;
+        border-bottom: 1px solid @input-border-color;
+    }
+
+    .@{datepickerTriggerClass} {
+        &:before {
+            font-family: 'BlueSky';
+            content: "\e81c";
+        }
+    }
+}
+
+@import '_Settings.less';

@@ -1,0 +1,41 @@
+﻿@import "../../../BaseTheme/Controls/ModalWindows/ModalWindowWrapper.less";
+
+/**
+ * Файл визуального оформления оболочки модальных окон.
+ */
+
+
+/* Модальное окно. */
+#@{modalWindowId} {
+    color: #333;
+    /* Заголовок модального окна. */
+    #@{modalWindowTitleId} {
+
+        /* Текст в заголовке модального окна. */
+        height: 27px;
+        background-color: #e8e8e8;
+        margin: 10px 0 0 10px;
+    }
+}
+.ui-dialog.@{modalMainClass} {
+    .ui-dialog-titlebar {
+      margin: 10px 0 0 10px;
+    }
+    .@{modalContentClass} {
+
+        background: @modal-bg;
+        border-style: solid;
+        border-width: @modal-border-width;
+        border-color: @modal-border-color;
+
+        overflow: hidden;
+        margin: 20px 0 0 0;
+        padding: 0;
+    }
+    .ui-dialog-titlebar-close {
+      &:before {
+        visibility: visible;
+      }
+    }
+}
+@import '_Settings.less';
