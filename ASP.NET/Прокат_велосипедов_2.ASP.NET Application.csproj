@@ -50,6 +50,12 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="IIS.University.FunctionBuilder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e3b6ba329c8abe3b, processorArchitecture=MSIL">
+      <HintPath>..\packages\IIS.University.FunctionBuilder.1.1.2\lib\net40\IIS.University.FunctionBuilder.dll</HintPath>
+    </Reference>
+    <Reference Include="IIS.University.PKHelper, Version=1.4.0.0, Culture=neutral, PublicKeyToken=d8a331e0b60b65c9, processorArchitecture=MSIL">
+      <HintPath>..\packages\IIS.University.PKHelper.1.5.1\lib\net40\IIS.University.PKHelper.dll</HintPath>
+    </Reference>
     <Reference Include="System">
       <HintPath>System</HintPath>
     </Reference>
@@ -298,6 +304,10 @@
     <Reference Include="SmartScroller">
       <HintPath>..\packages\NewPlatform.Flexberry.AspNet.2.3.0\lib\net45\SmartScroller.dll</HintPath>
     </Reference>
+    <ProjectReference Include="..\BusinessServers\Прокат_велосипедов_2.BusinessServers.csproj">
+      <Project>{07a6047d-2710-4e82-a887-46877de20434}</Project>
+      <Name>Прокат_велосипедов_2.BusinessServers</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="forms\Klient\KlientE.aspx" />
@@ -888,6 +898,7 @@
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>

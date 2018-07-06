@@ -12,6 +12,7 @@ namespace IIS.Прокат_велосипедов_2
 {
     using System;
     using System.Xml;
+    using ICSSoft.STORMNET.Business;
     
     
     // *** Start programmer edit section *** (Using statements)
@@ -25,6 +26,7 @@ namespace IIS.Прокат_велосипедов_2
     // *** Start programmer edit section *** (IАктуально CustomAttributes)
 
     // *** End programmer edit section *** (IАктуально CustomAttributes)
+    [BusinessServer("IIS.Прокат_велосипедов_2.IАктуальноBS, Прокат_велосипедов_2.BusinessServers", ICSSoft.STORMNET.Business.DataServiceObjectEvents.OnDeleteFromStorage)]
     public interface IАктуально
     {
         

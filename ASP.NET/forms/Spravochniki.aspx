@@ -12,7 +12,7 @@
         <div class ="listBlock">
             <p class="listTitle">Велосипеды</p>
             <ul>
-                <li><a href="~/SostoyanieVelosipeda/SostoyanieVelosipedaL.aspx">Состояния велосипедов</a></li>
+                <li><a href="SostoyanieVelosipeda/SostoyanieVelosipedaL.aspx">Состояния велосипедов</a></li>
                 <li><a href="TipVelosipeda/TipVelosipedaL.aspx">Типы велосипедов</a></li>
             </ul>
         </div>
