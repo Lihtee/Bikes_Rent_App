@@ -10,19 +10,19 @@
 
 namespace IIS.Прокат_велосипедов_2
 {
-    using System;
-    using System.Xml;
-    
-    
-    // *** Start programmer edit section *** (Using statements)
     using ICSSoft.STORMNET;
     using ICSSoft.STORMNET.Business;
+    using System;
+    using System.Xml;
+
+
+    // *** Start programmer edit section *** (Using statements)
 
     // *** End programmer edit section *** (Using statements)
 
 
     /// <summary>
-    /// I актуально BS.
+    /// IАктуальноBS.
     /// </summary>
     // *** Start programmer edit section *** (IАктуальноBS CustomAttributes)
 
@@ -30,18 +30,19 @@ namespace IIS.Прокат_велосипедов_2
     [ICSSoft.STORMNET.AccessType(ICSSoft.STORMNET.AccessType.none)]
     public class IАктуальноBS : ICSSoft.STORMNET.Business.BusinessServer
     {
-        
+
         // *** Start programmer edit section *** (IАктуальноBS CustomMembers)
 
         // *** End programmer edit section *** (IАктуальноBS CustomMembers)
 
-        
+
         // *** Start programmer edit section *** (OnUpdateIАктуально CustomAttributes)
 
         // *** End programmer edit section *** (OnUpdateIАктуально CustomAttributes)
         public virtual ICSSoft.STORMNET.DataObject[] OnUpdateIАктуально(IIS.Прокат_велосипедов_2.IАктуально UpdatedObject)
         {
             // *** Start programmer edit section *** (OnUpdateIАктуально)
+
             var updateObject = (DataObject)UpdatedObject;
 
 
@@ -66,6 +67,8 @@ namespace IIS.Прокат_велосипедов_2
             }
             return new ICSSoft.STORMNET.DataObject[1] {((DataObject)UpdatedObject) };
             // *** End programmer edit section *** (OnUpdateIАктуально)
+
+
         }
     }
 }

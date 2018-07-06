@@ -38,10 +38,6 @@
     <Reference Include="System.XML">
       <HintPath>System.XML.dll</HintPath>
     </Reference>
-    <ProjectReference Include="..\Objects\Прокат_велосипедов_2.Objects.csproj">
-      <Project>{7205b2e5-3d24-4e36-b673-fb297de06565}</Project>
-      <Name>Прокат_велосипедов_2.Objects</Name>
-    </ProjectReference>
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.3\lib\net40-client\log4net.dll</HintPath>
     </Reference>
@@ -127,6 +123,10 @@
     <Reference Include="ICSSoft.STORMNET.UserDataTypes">
       <HintPath>..\packages\NewPlatform.Flexberry.ORM.4.1.0\lib\net45\ICSSoft.STORMNET.UserDataTypes.dll</HintPath>
     </Reference>
+    <ProjectReference Include="..\Objects\Прокат_велосипедов_2.Objects.csproj">
+      <Project>{7205b2e5-3d24-4e36-b673-fb297de06565}</Project>
+      <Name>Прокат_велосипедов_2.Objects</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IАктуальноBS.cs">
