@@ -5,15 +5,18 @@ namespace IIS.Прокат_велосипедов_2
     using ICSSoft.STORMNET;
     using ICSSoft.STORMNET.Web.Controls;
     using ICSSoft.STORMNET.Web.AjaxControls;
-    
-    public partial class ВелосипедE : BaseEditForm<Велосипед>
+    using ICSSoft.STORMNET.Business;
+    using System.Web.Services;
+
+    public partial class ВыдачаВелосипедаE : BaseEditForm<ВыдачаВелосипеда>
     {
         /// <summary>
         /// Конструктор формы.
         /// </summary>
-        public ВелосипедE()
-            : base(Велосипед.Views.ВелосипедE)
+        public ВыдачаВелосипедаE()
+            : base(ВыдачаВелосипеда.Views.ВыдачаВелосипедаE)
         {
+            
         }
 
         /// <summary>
@@ -21,7 +24,7 @@ namespace IIS.Прокат_велосипедов_2
         /// </summary>
         public static string FormPath
         {
-            get { return "~/forms/Velosiped/VelosipedE.aspx"; }
+            get { return "~/forms/VydachaVelosipeda/VydachaVelosipedaE.aspx"; }
         }
 
         /// <summary>
@@ -36,11 +39,7 @@ namespace IIS.Прокат_велосипедов_2
         /// </summary>
         protected override void PreApplyToControls()
         {
-            if (DataObject == null || DataObject.GetStatus() == ObjectStatus.Created)
-            {
-                ctrlНомер.Visible = false;
-                ctrlНомерLabel.Visible = false;
-            }
+            
         }
 
         /// <summary>
@@ -49,7 +48,9 @@ namespace IIS.Прокат_велосипедов_2
         /// </summary>
         protected override void PostApplyToControls()
         {
+            
             Page.Validate();
+            
         }
 
         /// <summary>
@@ -57,7 +58,8 @@ namespace IIS.Прокат_велосипедов_2
         /// </summary>
         protected override void Postload()
         {
-            ctrlНомер.ReadOnly = true;
+            SaveBtn.OnClientClick = "mySaveBtnClickHaandler";
+            
         }
 
         /// <summary>
@@ -73,9 +75,30 @@ namespace IIS.Прокат_велосипедов_2
         /// Нетривиальная логика сохранения объекта.
         /// </summary>
         /// <returns>Объект данных, который сохранился.</returns>
+        [WebMethod]
         protected override DataObject SaveObject()
         {
-            return base.SaveObject();
+            
+            var storedObject = new IIS.Прокат_велосипедов_2.ПрокатВелосипеда
+            {
+                ДатаНачала = DataObject.ДатаНачала,
+                Велосипед = DataObject.Велосипед,
+                ПлановаяСтоимость = DataObject.ПлановаяСтоимость,
+                ПлановаяДлительность = DataObject.ПлановаяДлительность,
+                ТочкаВыдачи = DataObject.ТочкаВыдачи,
+                ТочкаСдачи = null,
+                Прокатчик = DataObject.Прокатчик,
+                Клиент = DataObject.Клиент,
+                ФактическаяДатаСдачи = null,
+                ФактическаяСтоимость = 0
+            };
+               
+            var ds = DataServiceProvider.DataService;
+            ds.UpdateObject(storedObject);
+
+            return DataObject;
         }
+        
+        
     }
 }

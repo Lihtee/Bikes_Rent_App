@@ -13,6 +13,8 @@ namespace IIS.Прокат_велосипедов_2
     using System;
     using System.Xml;
     using ICSSoft.STORMNET;
+    using ICSSoft.STORMNET.Business.Audit;
+    using ICSSoft.STORMNET.Business.Audit.Objects;
     
     
     // *** Start programmer edit section *** (Using statements)
@@ -28,7 +30,13 @@ namespace IIS.Прокат_велосипедов_2
     // *** End programmer edit section *** (ТочкаПроката CustomAttributes)
     [AutoAltered()]
     [Caption("Точка проката")]
-    [AccessType(ICSSoft.STORMNET.AccessType.none)]
+    [AccessType(ICSSoft.STORMNET.AccessType.@this)]
+    [View("AuditView", new string[] {
+            "Адрес as \'Адрес\'",
+            "КоличествоВелосипедов as \'Количество велосипедов\'",
+            "Актуально as \'Актуально\'",
+            "ДатаНачалаАктуальности as \'Дата начала актуальности\'",
+            "ДатаОкончанияАктуальности as \'Дата окончания актуальности\'"})]
     [View("ТочкаПрокатаE", new string[] {
             "Адрес as \'Адрес\'",
             "КоличествоВелосипедов as \'Количество велосипедов\'",
@@ -41,7 +49,7 @@ namespace IIS.Прокат_велосипедов_2
             "Актуально as \'Актуально\'",
             "ДатаНачалаАктуальности as \'Дата начала актуальности\'",
             "ДатаОкончанияАктуальности as \'Дата окончания актуальности\'"})]
-    public class ТочкаПроката : ICSSoft.STORMNET.DataObject, IIS.Прокат_велосипедов_2.IАктуально
+    public class ТочкаПроката : ICSSoft.STORMNET.DataObject, IIS.Прокат_велосипедов_2.IАктуально, IDataObjectWithAuditFields
     {
         
         private string fАдрес;
@@ -51,6 +59,14 @@ namespace IIS.Прокат_велосипедов_2
         private System.DateTime fДатаНачалаАктуальности;
         
         private ICSSoft.STORMNET.UserDataTypes.NullableDateTime fДатаОкончанияАктуальности;
+        
+        private System.Nullable<System.DateTime> fCreateTime;
+        
+        private string fCreator;
+        
+        private System.Nullable<System.DateTime> fEditTime;
+        
+        private string fEditor;
         
         // *** Start programmer edit section *** (ТочкаПроката CustomMembers)
 
@@ -211,10 +227,147 @@ namespace IIS.Прокат_велосипедов_2
         }
         
         /// <summary>
+        /// Время создания объекта.
+        /// </summary>
+        // *** Start programmer edit section *** (ТочкаПроката.CreateTime CustomAttributes)
+
+        // *** End programmer edit section *** (ТочкаПроката.CreateTime CustomAttributes)
+        public virtual System.Nullable<System.DateTime> CreateTime
+        {
+            get
+            {
+                // *** Start programmer edit section *** (ТочкаПроката.CreateTime Get start)
+
+                // *** End programmer edit section *** (ТочкаПроката.CreateTime Get start)
+                System.Nullable<System.DateTime> result = this.fCreateTime;
+                // *** Start programmer edit section *** (ТочкаПроката.CreateTime Get end)
+
+                // *** End programmer edit section *** (ТочкаПроката.CreateTime Get end)
+                return result;
+            }
+            set
+            {
+                // *** Start programmer edit section *** (ТочкаПроката.CreateTime Set start)
+
+                // *** End programmer edit section *** (ТочкаПроката.CreateTime Set start)
+                this.fCreateTime = value;
+                // *** Start programmer edit section *** (ТочкаПроката.CreateTime Set end)
+
+                // *** End programmer edit section *** (ТочкаПроката.CreateTime Set end)
+            }
+        }
+        
+        /// <summary>
+        /// Создатель объекта.
+        /// </summary>
+        // *** Start programmer edit section *** (ТочкаПроката.Creator CustomAttributes)
+
+        // *** End programmer edit section *** (ТочкаПроката.Creator CustomAttributes)
+        [StrLen(255)]
+        public virtual string Creator
+        {
+            get
+            {
+                // *** Start programmer edit section *** (ТочкаПроката.Creator Get start)
+
+                // *** End programmer edit section *** (ТочкаПроката.Creator Get start)
+                string result = this.fCreator;
+                // *** Start programmer edit section *** (ТочкаПроката.Creator Get end)
+
+                // *** End programmer edit section *** (ТочкаПроката.Creator Get end)
+                return result;
+            }
+            set
+            {
+                // *** Start programmer edit section *** (ТочкаПроката.Creator Set start)
+
+                // *** End programmer edit section *** (ТочкаПроката.Creator Set start)
+                this.fCreator = value;
+                // *** Start programmer edit section *** (ТочкаПроката.Creator Set end)
+
+                // *** End programmer edit section *** (ТочкаПроката.Creator Set end)
+            }
+        }
+        
+        /// <summary>
+        /// Время последнего редактирования объекта.
+        /// </summary>
+        // *** Start programmer edit section *** (ТочкаПроката.EditTime CustomAttributes)
+
+        // *** End programmer edit section *** (ТочкаПроката.EditTime CustomAttributes)
+        public virtual System.Nullable<System.DateTime> EditTime
+        {
+            get
+            {
+                // *** Start programmer edit section *** (ТочкаПроката.EditTime Get start)
+
+                // *** End programmer edit section *** (ТочкаПроката.EditTime Get start)
+                System.Nullable<System.DateTime> result = this.fEditTime;
+                // *** Start programmer edit section *** (ТочкаПроката.EditTime Get end)
+
+                // *** End programmer edit section *** (ТочкаПроката.EditTime Get end)
+                return result;
+            }
+            set
+            {
+                // *** Start programmer edit section *** (ТочкаПроката.EditTime Set start)
+
+                // *** End programmer edit section *** (ТочкаПроката.EditTime Set start)
+                this.fEditTime = value;
+                // *** Start programmer edit section *** (ТочкаПроката.EditTime Set end)
+
+                // *** End programmer edit section *** (ТочкаПроката.EditTime Set end)
+            }
+        }
+        
+        /// <summary>
+        /// Последний редактор объекта.
+        /// </summary>
+        // *** Start programmer edit section *** (ТочкаПроката.Editor CustomAttributes)
+
+        // *** End programmer edit section *** (ТочкаПроката.Editor CustomAttributes)
+        [StrLen(255)]
+        public virtual string Editor
+        {
+            get
+            {
+                // *** Start programmer edit section *** (ТочкаПроката.Editor Get start)
+
+                // *** End programmer edit section *** (ТочкаПроката.Editor Get start)
+                string result = this.fEditor;
+                // *** Start programmer edit section *** (ТочкаПроката.Editor Get end)
+
+                // *** End programmer edit section *** (ТочкаПроката.Editor Get end)
+                return result;
+            }
+            set
+            {
+                // *** Start programmer edit section *** (ТочкаПроката.Editor Set start)
+
+                // *** End programmer edit section *** (ТочкаПроката.Editor Set start)
+                this.fEditor = value;
+                // *** Start programmer edit section *** (ТочкаПроката.Editor Set end)
+
+                // *** End programmer edit section *** (ТочкаПроката.Editor Set end)
+            }
+        }
+        
+        /// <summary>
         /// Class views container.
         /// </summary>
         public class Views
         {
+            
+            /// <summary>
+            /// "AuditView" view.
+            /// </summary>
+            public static ICSSoft.STORMNET.View AuditView
+            {
+                get
+                {
+                    return ICSSoft.STORMNET.Information.GetView("AuditView", typeof(IIS.Прокат_велосипедов_2.ТочкаПроката));
+                }
+            }
             
             /// <summary>
             /// "ТочкаПрокатаE" view.
@@ -237,6 +390,98 @@ namespace IIS.Прокат_велосипедов_2
                     return ICSSoft.STORMNET.Information.GetView("ТочкаПрокатаL", typeof(IIS.Прокат_велосипедов_2.ТочкаПроката));
                 }
             }
+        }
+        
+        /// <summary>
+        /// Audit class settings.
+        /// </summary>
+        public class AuditSettings
+        {
+            
+            /// <summary>
+            /// Включён ли аудит для класса.
+            /// </summary>
+            public static bool AuditEnabled = true;
+            
+            /// <summary>
+            /// Использовать имя представления для аудита по умолчанию.
+            /// </summary>
+            public static bool UseDefaultView = false;
+            
+            /// <summary>
+            /// Включён ли аудит операции чтения.
+            /// </summary>
+            public static bool SelectAudit = true;
+            
+            /// <summary>
+            /// Имя представления для аудирования операции чтения.
+            /// </summary>
+            public static string SelectAuditViewName = "AuditView";
+            
+            /// <summary>
+            /// Включён ли аудит операции создания.
+            /// </summary>
+            public static bool InsertAudit = true;
+            
+            /// <summary>
+            /// Имя представления для аудирования операции создания.
+            /// </summary>
+            public static string InsertAuditViewName = "AuditView";
+            
+            /// <summary>
+            /// Включён ли аудит операции изменения.
+            /// </summary>
+            public static bool UpdateAudit = true;
+            
+            /// <summary>
+            /// Имя представления для аудирования операции изменения.
+            /// </summary>
+            public static string UpdateAuditViewName = "AuditView";
+            
+            /// <summary>
+            /// Включён ли аудит операции удаления.
+            /// </summary>
+            public static bool DeleteAudit = true;
+            
+            /// <summary>
+            /// Имя представления для аудирования операции удаления.
+            /// </summary>
+            public static string DeleteAuditViewName = "AuditView";
+            
+            /// <summary>
+            /// Путь к форме просмотра результатов аудита.
+            /// </summary>
+            public static string FormUrl = "";
+            
+            /// <summary>
+            /// Режим записи данных аудита (синхронный или асинхронный).
+            /// </summary>
+            public static ICSSoft.STORMNET.Business.Audit.Objects.tWriteMode WriteMode = ICSSoft.STORMNET.Business.Audit.Objects.tWriteMode.Synchronous;
+            
+            /// <summary>
+            /// Максимальная длина сохраняемого значения поля (если 0, то строка обрезаться не будет).
+            /// </summary>
+            public static int PrunningLength = 0;
+            
+            /// <summary>
+            /// Показывать ли пользователям в изменениях первичные ключи.
+            /// </summary>
+            public static bool ShowPrimaryKey = false;
+            
+            /// <summary>
+            /// Сохранять ли старое значение.
+            /// </summary>
+            public static bool KeepOldValue = true;
+            
+            /// <summary>
+            /// Сжимать ли сохраняемые значения.
+            /// </summary>
+            public static bool Compress = false;
+            
+            /// <summary>
+            /// Сохранять ли все значения атрибутов, а не только изменяемые.
+            /// </summary>
+            public static bool KeepAllValues = false;
         }
     }
 }

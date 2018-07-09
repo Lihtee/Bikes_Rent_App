@@ -10,6 +10,8 @@
       <siteMapNode title="Перевозка велосипеда" description="" url="~/forms/PerevozkaVelosipeda/PerevozkaVelosipedaL.aspx" />
       <siteMapNode title="Клиент" description="" url="~/forms/Klient/KlientL.aspx" />
       <siteMapNode title="Велосипед" description="" url="~/forms/Velosiped/VelosipedL.aspx" />
+      <siteMapNode title="Выдача велосипеда" description="" url="~/forms/VydachaVelosipeda/VydachaVelosipedaE.aspx" />
+      <siteMapNode title="Прием велосипеда" description="" url="~/forms/PriemVelosipeda/PriemVelosipedaE.aspx" />
     </siteMapNode>
     <siteMapNode title="Администрирование" roles="admin" >
       <siteMapNode title="Безопасность" roles="admin" >

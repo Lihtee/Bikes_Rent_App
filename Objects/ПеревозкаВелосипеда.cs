@@ -13,6 +13,8 @@ namespace IIS.Прокат_велосипедов_2
     using System;
     using System.Xml;
     using ICSSoft.STORMNET;
+    using ICSSoft.STORMNET.Business.Audit;
+    using ICSSoft.STORMNET.Business.Audit.Objects;
     
     
     // *** Start programmer edit section *** (Using statements)
@@ -28,7 +30,19 @@ namespace IIS.Прокат_велосипедов_2
     // *** End programmer edit section *** (ПеревозкаВелосипеда CustomAttributes)
     [AutoAltered()]
     [Caption("Перевозка велосипеда")]
-    [AccessType(ICSSoft.STORMNET.AccessType.none)]
+    [AccessType(ICSSoft.STORMNET.AccessType.@this)]
+    [View("AuditView", new string[] {
+            "Стоимость as \'Стоимость\'",
+            "ДатаНачала as \'Дата начала\'",
+            "ДатаКонца as \'Дата конца\'",
+            "КонечнаяТочка as \'Конечная точка\'",
+            "КонечнаяТочка.Адрес as \'Адрес\'",
+            "НачальнаяТочка as \'Начальная точка\'",
+            "НачальнаяТочка.Адрес as \'Адрес\'",
+            "Водитель as \'Водитель\'",
+            "Водитель.ФИО as \'ФИО\'"})]
+    [AssociatedDetailViewAttribute("AuditView", "ВелосипедВПеревозке", "AuditView", true, "", "Велосипед в перевозке", true, new string[] {
+            ""})]
     [View("ПеревозкаВелосипедаE", new string[] {
             "Стоимость as \'Стоимость\'",
             "ДатаНачала as \'Дата начала\'",
@@ -48,7 +62,7 @@ namespace IIS.Прокат_велосипедов_2
             "КонечнаяТочка.Адрес as \'Адрес\'",
             "НачальнаяТочка.Адрес as \'Адрес\'",
             "Водитель.ФИО as \'ФИО\'"})]
-    public class ПеревозкаВелосипеда : ICSSoft.STORMNET.DataObject
+    public class ПеревозкаВелосипеда : ICSSoft.STORMNET.DataObject, IDataObjectWithAuditFields
     {
         
         private decimal fСтоимость;
@@ -56,6 +70,14 @@ namespace IIS.Прокат_велосипедов_2
         private System.DateTime fДатаНачала;
         
         private ICSSoft.STORMNET.UserDataTypes.NullableDateTime fДатаКонца;
+        
+        private System.Nullable<System.DateTime> fCreateTime;
+        
+        private string fCreator;
+        
+        private System.Nullable<System.DateTime> fEditTime;
+        
+        private string fEditor;
         
         private IIS.Прокат_велосипедов_2.ТочкаПроката fКонечнаяТочка;
         
@@ -162,6 +184,132 @@ namespace IIS.Прокат_велосипедов_2
                 // *** Start programmer edit section *** (ПеревозкаВелосипеда.ДатаКонца Set end)
 
                 // *** End programmer edit section *** (ПеревозкаВелосипеда.ДатаКонца Set end)
+            }
+        }
+        
+        /// <summary>
+        /// Время создания объекта.
+        /// </summary>
+        // *** Start programmer edit section *** (ПеревозкаВелосипеда.CreateTime CustomAttributes)
+
+        // *** End programmer edit section *** (ПеревозкаВелосипеда.CreateTime CustomAttributes)
+        public virtual System.Nullable<System.DateTime> CreateTime
+        {
+            get
+            {
+                // *** Start programmer edit section *** (ПеревозкаВелосипеда.CreateTime Get start)
+
+                // *** End programmer edit section *** (ПеревозкаВелосипеда.CreateTime Get start)
+                System.Nullable<System.DateTime> result = this.fCreateTime;
+                // *** Start programmer edit section *** (ПеревозкаВелосипеда.CreateTime Get end)
+
+                // *** End programmer edit section *** (ПеревозкаВелосипеда.CreateTime Get end)
+                return result;
+            }
+            set
+            {
+                // *** Start programmer edit section *** (ПеревозкаВелосипеда.CreateTime Set start)
+
+                // *** End programmer edit section *** (ПеревозкаВелосипеда.CreateTime Set start)
+                this.fCreateTime = value;
+                // *** Start programmer edit section *** (ПеревозкаВелосипеда.CreateTime Set end)
+
+                // *** End programmer edit section *** (ПеревозкаВелосипеда.CreateTime Set end)
+            }
+        }
+        
+        /// <summary>
+        /// Создатель объекта.
+        /// </summary>
+        // *** Start programmer edit section *** (ПеревозкаВелосипеда.Creator CustomAttributes)
+
+        // *** End programmer edit section *** (ПеревозкаВелосипеда.Creator CustomAttributes)
+        [StrLen(255)]
+        public virtual string Creator
+        {
+            get
+            {
+                // *** Start programmer edit section *** (ПеревозкаВелосипеда.Creator Get start)
+
+                // *** End programmer edit section *** (ПеревозкаВелосипеда.Creator Get start)
+                string result = this.fCreator;
+                // *** Start programmer edit section *** (ПеревозкаВелосипеда.Creator Get end)
+
+                // *** End programmer edit section *** (ПеревозкаВелосипеда.Creator Get end)
+                return result;
+            }
+            set
+            {
+                // *** Start programmer edit section *** (ПеревозкаВелосипеда.Creator Set start)
+
+                // *** End programmer edit section *** (ПеревозкаВелосипеда.Creator Set start)
+                this.fCreator = value;
+                // *** Start programmer edit section *** (ПеревозкаВелосипеда.Creator Set end)
+
+                // *** End programmer edit section *** (ПеревозкаВелосипеда.Creator Set end)
+            }
+        }
+        
+        /// <summary>
+        /// Время последнего редактирования объекта.
+        /// </summary>
+        // *** Start programmer edit section *** (ПеревозкаВелосипеда.EditTime CustomAttributes)
+
+        // *** End programmer edit section *** (ПеревозкаВелосипеда.EditTime CustomAttributes)
+        public virtual System.Nullable<System.DateTime> EditTime
+        {
+            get
+            {
+                // *** Start programmer edit section *** (ПеревозкаВелосипеда.EditTime Get start)
+
+                // *** End programmer edit section *** (ПеревозкаВелосипеда.EditTime Get start)
+                System.Nullable<System.DateTime> result = this.fEditTime;
+                // *** Start programmer edit section *** (ПеревозкаВелосипеда.EditTime Get end)
+
+                // *** End programmer edit section *** (ПеревозкаВелосипеда.EditTime Get end)
+                return result;
+            }
+            set
+            {
+                // *** Start programmer edit section *** (ПеревозкаВелосипеда.EditTime Set start)
+
+                // *** End programmer edit section *** (ПеревозкаВелосипеда.EditTime Set start)
+                this.fEditTime = value;
+                // *** Start programmer edit section *** (ПеревозкаВелосипеда.EditTime Set end)
+
+                // *** End programmer edit section *** (ПеревозкаВелосипеда.EditTime Set end)
+            }
+        }
+        
+        /// <summary>
+        /// Последний редактор объекта.
+        /// </summary>
+        // *** Start programmer edit section *** (ПеревозкаВелосипеда.Editor CustomAttributes)
+
+        // *** End programmer edit section *** (ПеревозкаВелосипеда.Editor CustomAttributes)
+        [StrLen(255)]
+        public virtual string Editor
+        {
+            get
+            {
+                // *** Start programmer edit section *** (ПеревозкаВелосипеда.Editor Get start)
+
+                // *** End programmer edit section *** (ПеревозкаВелосипеда.Editor Get start)
+                string result = this.fEditor;
+                // *** Start programmer edit section *** (ПеревозкаВелосипеда.Editor Get end)
+
+                // *** End programmer edit section *** (ПеревозкаВелосипеда.Editor Get end)
+                return result;
+            }
+            set
+            {
+                // *** Start programmer edit section *** (ПеревозкаВелосипеда.Editor Set start)
+
+                // *** End programmer edit section *** (ПеревозкаВелосипеда.Editor Set start)
+                this.fEditor = value;
+                // *** Start programmer edit section *** (ПеревозкаВелосипеда.Editor Set end)
+
+                // *** End programmer edit section *** (ПеревозкаВелосипеда.Editor Set end)
             }
         }
         
@@ -303,6 +451,17 @@ namespace IIS.Прокат_велосипедов_2
         {
             
             /// <summary>
+            /// "AuditView" view.
+            /// </summary>
+            public static ICSSoft.STORMNET.View AuditView
+            {
+                get
+                {
+                    return ICSSoft.STORMNET.Information.GetView("AuditView", typeof(IIS.Прокат_велосипедов_2.ПеревозкаВелосипеда));
+                }
+            }
+            
+            /// <summary>
             /// "ПеревозкаВелосипедаE" view.
             /// </summary>
             public static ICSSoft.STORMNET.View ПеревозкаВелосипедаE
@@ -323,6 +482,98 @@ namespace IIS.Прокат_велосипедов_2
                     return ICSSoft.STORMNET.Information.GetView("ПеревозкаВелосипедаL", typeof(IIS.Прокат_велосипедов_2.ПеревозкаВелосипеда));
                 }
             }
+        }
+        
+        /// <summary>
+        /// Audit class settings.
+        /// </summary>
+        public class AuditSettings
+        {
+            
+            /// <summary>
+            /// Включён ли аудит для класса.
+            /// </summary>
+            public static bool AuditEnabled = true;
+            
+            /// <summary>
+            /// Использовать имя представления для аудита по умолчанию.
+            /// </summary>
+            public static bool UseDefaultView = false;
+            
+            /// <summary>
+            /// Включён ли аудит операции чтения.
+            /// </summary>
+            public static bool SelectAudit = false;
+            
+            /// <summary>
+            /// Имя представления для аудирования операции чтения.
+            /// </summary>
+            public static string SelectAuditViewName = "AuditView";
+            
+            /// <summary>
+            /// Включён ли аудит операции создания.
+            /// </summary>
+            public static bool InsertAudit = true;
+            
+            /// <summary>
+            /// Имя представления для аудирования операции создания.
+            /// </summary>
+            public static string InsertAuditViewName = "AuditView";
+            
+            /// <summary>
+            /// Включён ли аудит операции изменения.
+            /// </summary>
+            public static bool UpdateAudit = false;
+            
+            /// <summary>
+            /// Имя представления для аудирования операции изменения.
+            /// </summary>
+            public static string UpdateAuditViewName = "AuditView";
+            
+            /// <summary>
+            /// Включён ли аудит операции удаления.
+            /// </summary>
+            public static bool DeleteAudit = true;
+            
+            /// <summary>
+            /// Имя представления для аудирования операции удаления.
+            /// </summary>
+            public static string DeleteAuditViewName = "AuditView";
+            
+            /// <summary>
+            /// Путь к форме просмотра результатов аудита.
+            /// </summary>
+            public static string FormUrl = "";
+            
+            /// <summary>
+            /// Режим записи данных аудита (синхронный или асинхронный).
+            /// </summary>
+            public static ICSSoft.STORMNET.Business.Audit.Objects.tWriteMode WriteMode = ICSSoft.STORMNET.Business.Audit.Objects.tWriteMode.Synchronous;
+            
+            /// <summary>
+            /// Максимальная длина сохраняемого значения поля (если 0, то строка обрезаться не будет).
+            /// </summary>
+            public static int PrunningLength = 0;
+            
+            /// <summary>
+            /// Показывать ли пользователям в изменениях первичные ключи.
+            /// </summary>
+            public static bool ShowPrimaryKey = false;
+            
+            /// <summary>
+            /// Сохранять ли старое значение.
+            /// </summary>
+            public static bool KeepOldValue = true;
+            
+            /// <summary>
+            /// Сжимать ли сохраняемые значения.
+            /// </summary>
+            public static bool Compress = false;
+            
+            /// <summary>
+            /// Сохранять ли все значения атрибутов, а не только изменяемые.
+            /// </summary>
+            public static bool KeepAllValues = false;
         }
     }
 }
