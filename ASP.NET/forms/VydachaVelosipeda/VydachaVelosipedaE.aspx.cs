@@ -7,6 +7,7 @@ namespace IIS.Прокат_велосипедов_2
     using ICSSoft.STORMNET.Web.AjaxControls;
     using ICSSoft.STORMNET.Business;
     using System.Web.Services;
+    using System;
 
     public partial class ВыдачаВелосипедаE : BaseEditForm<ВыдачаВелосипеда>
     {
@@ -58,8 +59,10 @@ namespace IIS.Прокат_велосипедов_2
         /// </summary>
         protected override void Postload()
         {
-            SaveBtn.OnClientClick = "mySaveBtnClickHaandler";
-            
+            //ctrlКлиент.LookUpFormURL = ResolveUrl("/forms/Klient/KlientL.aspx");
+            //ctrlКлиент.LookUpFormMenubar = BaseMasterEditorLookUp.YesNo.Yes;
+            //ctrlКлиент.LookUpFormToolbar = BaseMasterEditorLookUp.YesNo.Yes;
+
         }
 
         /// <summary>
@@ -75,28 +78,43 @@ namespace IIS.Прокат_велосипедов_2
         /// Нетривиальная логика сохранения объекта.
         /// </summary>
         /// <returns>Объект данных, который сохранился.</returns>
-        [WebMethod]
         protected override DataObject SaveObject()
         {
             
-            var storedObject = new IIS.Прокат_велосипедов_2.ПрокатВелосипеда
-            {
-                ДатаНачала = DataObject.ДатаНачала,
-                Велосипед = DataObject.Велосипед,
-                ПлановаяСтоимость = DataObject.ПлановаяСтоимость,
-                ПлановаяДлительность = DataObject.ПлановаяДлительность,
-                ТочкаВыдачи = DataObject.ТочкаВыдачи,
-                ТочкаСдачи = null,
-                Прокатчик = DataObject.Прокатчик,
-                Клиент = DataObject.Клиент,
-                ФактическаяДатаСдачи = null,
-                ФактическаяСтоимость = 0
-            };
-               
-            var ds = DataServiceProvider.DataService;
-            ds.UpdateObject(storedObject);
+            
 
             return DataObject;
+        }
+        [WebMethod]
+        public static bool MySaveObject
+            (string startDate ,string plannedDuration, string plannedPrice,
+             string startPoint, string vel, string klient, string employee)
+        {
+            try
+            {
+                var storedObject = new IIS.Прокат_велосипедов_2.ПрокатВелосипеда
+                {
+                    ДатаНачала = DateTime.Parse(startDate),
+                    Велосипед = new Велосипед { __PrimaryKey = Int32.Parse(vel) },
+                    ПлановаяСтоимость = Int32.Parse(plannedPrice),
+                    ПлановаяДлительность = Int32.Parse(plannedDuration),
+                    ТочкаВыдачи = new ТочкаПроката {__PrimaryKey = Int32.Parse(startPoint) },
+                    ТочкаСдачи = null,
+                    Прокатчик = new Сотрудник {__PrimaryKey = Int32.Parse(employee) },
+                    Клиент = new Клиент {__PrimaryKey = Int32.Parse(klient) },
+                    ФактическаяДатаСдачи = null,
+                    ФактическаяСтоимость = 0
+                };
+
+                var ds = DataServiceProvider.DataService;
+                ds.UpdateObject(storedObject);
+                return true;
+            }
+            catch (System.Exception)
+            {
+                return false;
+            }
+
         }
         
         

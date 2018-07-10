@@ -29,5 +29,8 @@
     <siteMapNode title="Cправочники" roles="admin">
       <siteMapNode title="Все справочники" roles="admin" url="~/forms/Spravochniki.aspx"/>
     </siteMapNode>
+    <siteMapNode title ="Запросы" roles ="admin">
+      <siteMapNode title ="Запросы" roles ="admin" url="~/forms/Zaprosy.aspx"/>
+    </siteMapNode>
   </siteMapNode>
 </siteMap>

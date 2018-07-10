@@ -67,7 +67,7 @@
 <div class="clearfix">
   <asp:Label CssClass="descLbl" ID="ctrlКлиентLabel" runat="server" Text="Клиент" EnableViewState="False">
 </asp:Label>
-<ac:MasterEditorAjaxLookUp ID="ctrlКлиент" CssClass="descTxt" runat="server" ShowInThickBox="True" Autocomplete="true" />
+<ac:MasterEditorAjaxLookUp ID="ctrlКлиент" CssClass="descTxt" runat="server" ShowInThickBox="True" Autocomplete="true" LookUpFormURL="~/forms/Klient/KlientL.aspx" />
 
 <asp:RequiredFieldValidator ID="ctrlКлиентRequiredFieldValidator" runat="server" ControlToValidate="ctrlКлиент"
                             ErrorMessage="Не указано: Клиент" Text="*" 
@@ -99,30 +99,41 @@
 </asp:Content>
 <asp:Content runat="server" ID="content2" ContentPlaceHolderID="ContentPlaceHolder0">
 <script type="text/javascript">
-        $("#<%= SaveBtn.ClientID %>").click(function () {
+    $("#<%= SaveBtn.ClientID %>").click(function () {
+        var obj = {
+            startDate: $("#<%= ctrlДатаНачала.ClientID %>").val(),
+            plannedDuration: $("#<%= ctrlПлановаяДлительность.ClientID %>").val(),
+            plannedPrice: $("#<%= ctrlПлановаяСтоимость.ClientID %>").val(),
+            startPoint: $("#<%= ctrlТочкаВыдачи.ClientID %>").val(),
+            vel: $("#<%= ctrlВелосипед.ClientID %>").val(),
+            klient: $("#<%= ctrlКлиент.ClientID %>").val(),
+            employee: $("#<%= ctrlПрокатчик.ClientID %>").val(),
+
+        }
             $.ajax({
-                url: location.origin + "forms/VydachaVelosipeda/VydachaVelosipeda.aspx/SaveObject", 
-                timeout: 5000,
-                success: function () { 
+                <%--url: "<%= ResolveUrl("~/forms/VydachaVelosipeda/VydachaVelosipeda.aspx/MySaveObject")%>",--%>
+                url:"VydachaVelosipeda.aspx/MySaveObject",
+                type: "POST",
+                data: JSON.stringify(obj),
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (result) { 
                     $.ics.dialog.confirm({
                         message: 'Выдать еще один велосипед?',
                         title: 'Оформление еще одной выдачи',
                         callback: function (res) {
                             if (res) {
                                 // При нажатии OK.
-                                window.location.href ="/forms/VydachaVelosipeda/VydachaVelosipeda.aspx"
+                                window.location.href = "/forms/VydachaVelosipeda/VydachaVelosipeda.aspx"
                             } else {
                                 // При нажатии Cancel
-                                window.location.href = "/Default.aspx";
+                                window.location.href =  "/Default.aspx";
                             }
                         }
                     });
                 },
-                error: function (jqXHR, status, error) {
+                error: function () {
                     alert("Some error")
-                    alert(jqXHR);
-                    alert(status);
-                    alert(error);
                 }
             });
         });

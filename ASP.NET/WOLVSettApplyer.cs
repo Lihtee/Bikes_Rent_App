@@ -28,6 +28,7 @@
         /// <param name="wolv">WOLV, к которому надо применить настройки.</param>
         public override void ApplyLookUpSettings(AjaxControls.WebObjectListView wolv)
         {
+            
         }
     }
 }

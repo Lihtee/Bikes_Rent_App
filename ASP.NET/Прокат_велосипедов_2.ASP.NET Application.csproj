@@ -942,6 +942,14 @@
       <DependentUpon>PriemVelosipedaL.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Content Include="forms\Zaprosy.aspx" />
+    <Compile Include="forms\Zaprosy.aspx.cs">
+      <DependentUpon>Zaprosy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Zaprosy.aspx.designer.cs">
+      <DependentUpon>Zaprosy.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
