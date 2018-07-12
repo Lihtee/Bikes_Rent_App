@@ -86,33 +86,47 @@ namespace IIS.Прокат_велосипедов_2
             return DataObject;
         }
         [WebMethod]
-        public static bool MySaveObject
+        public static string MySaveObject
             (string startDate ,string plannedDuration, string plannedPrice,
              string startPoint, string vel, string klient, string employee)
         {
             try
             {
+                var ds = DataServiceProvider.DataService;
+
+                var velObj = new Велосипед { __PrimaryKey = (vel).ToString() };
+                ds.LoadObject(velObj);
+
+                var startPointObj = new ТочкаПроката { __PrimaryKey = (startPoint).ToString() };
+                ds.LoadObject(startPointObj);
+
+                var employeeObj = new Сотрудник { __PrimaryKey = (employee).ToString() };
+                ds.LoadObject(employeeObj);
+
+                var clientObj = new Клиент { __PrimaryKey = (klient).ToString() };
+                ds.LoadObject(clientObj);
+
                 var storedObject = new IIS.Прокат_велосипедов_2.ПрокатВелосипеда
                 {
                     ДатаНачала = DateTime.Parse(startDate),
-                    Велосипед = new Велосипед { __PrimaryKey = Int32.Parse(vel) },
+                    Велосипед = velObj,
                     ПлановаяСтоимость = Int32.Parse(plannedPrice),
                     ПлановаяДлительность = Int32.Parse(plannedDuration),
-                    ТочкаВыдачи = new ТочкаПроката {__PrimaryKey = Int32.Parse(startPoint) },
+                    ТочкаВыдачи = startPointObj,
                     ТочкаСдачи = null,
-                    Прокатчик = new Сотрудник {__PrimaryKey = Int32.Parse(employee) },
-                    Клиент = new Клиент {__PrimaryKey = Int32.Parse(klient) },
+                    Прокатчик = employeeObj,
+                    Клиент = clientObj,
                     ФактическаяДатаСдачи = null,
                     ФактическаяСтоимость = 0
                 };
 
-                var ds = DataServiceProvider.DataService;
+                
                 ds.UpdateObject(storedObject);
-                return true;
+                return "1";
             }
-            catch (System.Exception)
+            catch (System.Exception e )
             {
-                return false;
+                return "0";
             }
 
         }

@@ -15,15 +15,31 @@
             <p>
                 Наименьшая популярность у <b class="res" id="leastPop" runat="server"></b>
             </p>
+            <div class="paramsLine">
+                Интервал запроса: с 
+                <ac:DatePicker ID="ctrlДатаНачала" CssClass="myDatePicker" runat="server"/> 
+                по 
+                <ac:DatePicker ID="ctrlДатаКонца" CssClass="myDatePicker" runat="server"/>
+                <button ID="btnShowReq1" class="button-save"  >Выполнить запрос</button> 
+            </div>
         </div>
 
     </div>
+    <% //TODO сделать параметры и графики для запросов %>
     <%--1)	Какой тип велосипедов пользуется наибольшей популярностью, а какой наименьшей?
     2)	Какую прибыль приносит каждая из точек проката?
     3)	Сколько велосипедов было испорчено или украдено за месяц?
     4)	Сколько велосипедов было перевезено между точками на специальном автомобиле для балансировки?
     5)	Какова средняя продолжительность проката велосипеда?--%>
-
+    <style>
+        .myDatePicker{
+            width:120px;
+            display:inline-block;
+        }
+        .paramsLine{
+            display:inline-block;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder0" runat="server">
 </asp:Content>

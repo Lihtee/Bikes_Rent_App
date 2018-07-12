@@ -14,6 +14,7 @@ using ICSSoft.STORMNET.Business.LINQProvider;
 using System.Linq;
 using System.Collections.Generic;
 using ICSSoft.STORMNET;
+using System.Data.SqlClient;
 
 namespace IIS.Прокат_велосипедов_2
 {
@@ -26,41 +27,52 @@ namespace IIS.Прокат_велосипедов_2
 
         protected override void OnLoad(EventArgs e)
         {
-            var ds = DataServiceProvider.DataService;
-            var bikes = ds.Query<Велосипед>();
-            var rents = ds.Query<ПрокатВелосипеда>();
-            var types = ds.Query<ТипВелосипеда>().ToList();
-            
-            var typesUsageCounts =
-                   types
-                  .Select(t => new
-                  {
-                      num = rents
-                            .Where(x => x.Велосипед != null 
-                                        && x.Велосипед.ТипВелосипеда !=null 
-                                        && x.Велосипед.ТипВелосипеда.__PrimaryKey == t.__PrimaryKey)
-                            .Count(),
-                      type = t
-                  });
-          
-            var topId = typesUsageCounts
-                                .OrderByDescending(x => x.num)
-                                .Select(x=>x.type)
-                                .FirstOrDefault()
-                                .__PrimaryKey;
-            var botId = typesUsageCounts
-                                .OrderBy(x => x.num)
-                                .Select(x=>x.type)
-                                .FirstOrDefault()
-                                .__PrimaryKey;
-            var topType = new ТипВелосипеда { __PrimaryKey = topId };
-            var botType = new ТипВелосипеда { __PrimaryKey = botId };
-            ds.LoadObject(topType);
-            ds.LoadObject(botType);
-
-            mostPop.InnerHtml = topType.Название;
-            leastPop.InnerHtml = botType.Название;
             
         }
+        //protected static string BestWorstRequest_1()
+        //{
+        //    DateTime dateFrom = ctrlДатаНачала.Value;
+        //    DateTime dateTo = ctrlДатаКонца.Value;
+        //    using (SqlConnection conn = new SqlConnection())
+        //    {
+        //        string commandText = @"SELECT Название, COUNT(*) as КоличествоПрокатов
+        //                                FROM
+        //                                (
+        //                                    SELECT
+        //                                        ТипВелосипеда.primaryKey,
+        //                                        ТипВелосипеда.Название as Название,
+        //                                        ПрокатВелосипеда.ДатаНачала as ДатаНачала
+        //                                    FROM
+        //                                        ТипВелосипеда INNER JOIN Велосипед ON ТипВелосипеда.primaryKey = Велосипед.
+        //                                                      INNER JOIN ПрокатВелосипеда ON ПрокатВелосипеда.Велосипед_m0 = Велосипед.primaryKey
+        //                                )'SMTH'
+        //                                    WHERE ДатаНачала BETWEEN @DateFrom and @DateTo
+        //                                    GROUP BY Название";
+
+        //        SqlCommand com = new SqlCommand(commandText, conn);
+        //        SqlParameter dateFromPar = new SqlParameter
+        //        {
+        //            DbType = DbType.DateTime,
+        //            ParameterName = "@DateFrom",
+        //            Value = dateFrom,
+        //        };
+        //        SqlParameter dateToPar = new SqlParameter
+        //        {
+        //            DbType = DbType.DateTime,
+        //            ParameterName = "@DateTo",
+        //            Value = dateTo,
+        //        };
+        //        //com.Parameters.AddRange
+        //        //    (new SqlParameter[] { dateFromPar, dateToPar });
+        //        //var reader = com.ExecuteReader();
+        //        //object[] res = new object[3];
+        //        //int i = 0;
+        //        ////while (reader.Read())
+        //        ////{
+        //        ////    res[i] = reader.
+
+        //    }
+        //}
+        
     }
 }

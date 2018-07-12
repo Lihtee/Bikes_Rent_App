@@ -12,6 +12,7 @@ namespace BikesUnitTests
         [TestMethod]
         public void TestIАктуальноDelete()
         {
+            //TODO сделать отдельный метод для второго условия
             var bs = new IАктуальноBS();
             var mock = new СостояниеВелосипеда
             {

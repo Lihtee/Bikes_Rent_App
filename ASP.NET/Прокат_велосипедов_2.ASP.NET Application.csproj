@@ -62,6 +62,7 @@
     <Reference Include="System.Linq">
       <HintPath>System.Linq</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web">
       <HintPath>System.Web</HintPath>
     </Reference>
@@ -318,6 +319,7 @@
     <Compile Include="forms\Klient\KlientE.aspx.designer.cs">
       <DependentUpon>KlientE.aspx</DependentUpon>
     </Compile>
+    <Content Include="shared\script\GoogleCharts.js" />
     <Content Include="Web.sitemap">
       <SubType>Designer</SubType>
     </Content>
@@ -949,6 +951,46 @@
     </Compile>
     <Compile Include="forms\Zaprosy.aspx.designer.cs">
       <DependentUpon>Zaprosy.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\Zapros3.aspx" />
+    <Compile Include="forms\Zapros3.aspx.cs">
+      <DependentUpon>Zapros3.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Zapros3.aspx.designer.cs">
+      <DependentUpon>Zapros3.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\Zapros4.aspx" />
+    <Compile Include="forms\Zapros4.aspx.cs">
+      <DependentUpon>Zapros4.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Zapros4.aspx.designer.cs">
+      <DependentUpon>Zapros4.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\Zapros5.aspx" />
+    <Compile Include="forms\Zapros5.aspx.cs">
+      <DependentUpon>Zapros5.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Zapros5.aspx.designer.cs">
+      <DependentUpon>Zapros5.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\Zapros1.aspx" />
+    <Compile Include="forms\Zapros1.aspx.cs">
+      <DependentUpon>Zapros1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Zapros1.aspx.designer.cs">
+      <DependentUpon>Zapros1.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\Zapros2.aspx" />
+    <Compile Include="forms\Zapros2.aspx.cs">
+      <DependentUpon>Zapros2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Zapros2.aspx.designer.cs">
+      <DependentUpon>Zapros2.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <PropertyGroup>

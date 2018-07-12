@@ -31,6 +31,7 @@
     </siteMapNode>
     <siteMapNode title ="Запросы" roles ="admin">
       <siteMapNode title ="Запросы" roles ="admin" url="~/forms/Zaprosy.aspx"/>
+      <siteMapNode title ="Запрос 1: рейтинг типов велосипедов" roles ="admin" url="~/forms/Zapros1.aspx"/>
     </siteMapNode>
   </siteMapNode>
 </siteMap>

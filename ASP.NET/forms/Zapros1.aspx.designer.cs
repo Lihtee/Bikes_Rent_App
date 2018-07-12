@@ -10,25 +10,7 @@
 namespace IIS.Прокат_велосипедов_2 {
     
     
-    public partial class Запросы {
-        
-        /// <summary>
-        /// mostPop элемент управления.
-        /// </summary>
-        /// <remarks>
-        /// Автоматически создаваемое поле.
-        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl mostPop;
-        
-        /// <summary>
-        /// leastPop элемент управления.
-        /// </summary>
-        /// <remarks>
-        /// Автоматически создаваемое поле.
-        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl leastPop;
+    public partial class Запрос1 {
         
         /// <summary>
         /// ctrlДатаНачала элемент управления.
