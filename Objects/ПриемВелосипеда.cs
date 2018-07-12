@@ -64,6 +64,8 @@ namespace IIS.Прокат_велосипедов_2
         
         private IIS.Прокат_велосипедов_2.ПрокатВелосипеда fПрокатВелосипеда;
         
+        private IIS.Прокат_велосипедов_2.ТочкаПроката fТочкаСдачи;
+        
         // *** Start programmer edit section *** (ПриемВелосипеда CustomMembers)
 
         // *** End programmer edit section *** (ПриемВелосипеда CustomMembers)
@@ -196,6 +198,40 @@ namespace IIS.Прокат_велосипедов_2
                 // *** Start programmer edit section *** (ПриемВелосипеда.ПрокатВелосипеда Set end)
 
                 // *** End programmer edit section *** (ПриемВелосипеда.ПрокатВелосипеда Set end)
+            }
+        }
+        
+        /// <summary>
+        /// Прием велосипеда.
+        /// </summary>
+        // *** Start programmer edit section *** (ПриемВелосипеда.ТочкаСдачи CustomAttributes)
+
+        // *** End programmer edit section *** (ПриемВелосипеда.ТочкаСдачи CustomAttributes)
+        [PropertyStorage(new string[] {
+                "ТочкаСдачи"})]
+        [NotNull()]
+        public virtual IIS.Прокат_велосипедов_2.ТочкаПроката ТочкаСдачи
+        {
+            get
+            {
+                // *** Start programmer edit section *** (ПриемВелосипеда.ТочкаСдачи Get start)
+
+                // *** End programmer edit section *** (ПриемВелосипеда.ТочкаСдачи Get start)
+                IIS.Прокат_велосипедов_2.ТочкаПроката result = this.fТочкаСдачи;
+                // *** Start programmer edit section *** (ПриемВелосипеда.ТочкаСдачи Get end)
+
+                // *** End programmer edit section *** (ПриемВелосипеда.ТочкаСдачи Get end)
+                return result;
+            }
+            set
+            {
+                // *** Start programmer edit section *** (ПриемВелосипеда.ТочкаСдачи Set start)
+
+                // *** End programmer edit section *** (ПриемВелосипеда.ТочкаСдачи Set start)
+                this.fТочкаСдачи = value;
+                // *** Start programmer edit section *** (ПриемВелосипеда.ТочкаСдачи Set end)
+
+                // *** End programmer edit section *** (ПриемВелосипеда.ТочкаСдачи Set end)
             }
         }
         

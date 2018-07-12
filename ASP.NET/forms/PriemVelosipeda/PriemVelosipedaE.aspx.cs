@@ -5,7 +5,8 @@ namespace IIS.Прокат_велосипедов_2
     using ICSSoft.STORMNET;
     using ICSSoft.STORMNET.Web.Controls;
     using ICSSoft.STORMNET.Web.AjaxControls;
-    
+    using ICSSoft.STORMNET.Business;
+
     public partial class ПриемВелосипедаE : BaseEditForm<ПриемВелосипеда>
     {
         /// <summary>
@@ -36,6 +37,10 @@ namespace IIS.Прокат_велосипедов_2
         /// </summary>
         protected override void PreApplyToControls()
         {
+            if (Request.QueryString["success"] == "true")
+            {
+                Response.Redirect(ПриемВелосипедаE.FormPath);
+            }
         }
 
         /// <summary>
@@ -74,7 +79,27 @@ namespace IIS.Прокат_велосипедов_2
             //можно ввести параметр типа previousSave, по которому выводить
             //окошко, что сохранение прошло успешно
             //WebMessageBox.Show();
-            return base.SaveObject();
+
+            try
+            {
+                var ds = DataServiceProvider.DataService;
+                var storedObj = DataObject.ПрокатВелосипеда;
+                storedObj.ТочкаСдачи = DataObject.ТочкаСдачи;
+                storedObj.ФактическаяДатаСдачи
+                    = (ICSSoft.STORMNET.UserDataTypes.NullableDateTime)DataObject.ДатаПриема;
+                storedObj.ФактическаяСтоимость = DataObject.ФактическаяСтоимость;
+                ds.UpdateObject(storedObj);
+                Response.Redirect(ПриемВелосипедаE.FormPath +  "?success=true");
+                return DataObject;
+            }
+            catch (System.Exception e )
+            {
+                throw e;
+            }
+        }
+        protected void btnSaveClick(object sender, System.EventArgs e)
+        {
+            SaveObject();
         }
     }
 }
