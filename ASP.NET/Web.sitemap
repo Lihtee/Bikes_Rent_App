@@ -6,12 +6,16 @@
       <siteMapNode title="Сущности" url="~/flexberry/AuditEntitiesList/" />
       <siteMapNode title="Данные" url="~/flexberry/AuditEntityByObjectsList/" />
     </siteMapNode>
-    <siteMapNode title="Прокат_велосипедов" roles="*" xmlns="">
-      <siteMapNode title="Перевозка велосипеда" description="" url="~/forms/PerevozkaVelosipeda/PerevozkaVelosipedaL.aspx" />
-      <siteMapNode title="Клиент" description="" url="~/forms/Klient/KlientL.aspx" />
+    <siteMapNode title="Объекты" roles="admin, Прокатчик, Водитель" xmlns="">
+      <siteMapNode title="Клиент" description="" roles ="admin, Прокатчик" url="~/forms/Klient/KlientL.aspx" />
       <siteMapNode title="Велосипед" description="" url="~/forms/Velosiped/VelosipedL.aspx" />
-      <siteMapNode title="Выдача велосипеда" description="" url="~/forms/VydachaVelosipeda/VydachaVelosipedaE.aspx" />
-      <siteMapNode title="Прием велосипеда" description="" url="~/forms/PriemVelosipeda/PriemVelosipedaE.aspx" />
+    </siteMapNode>
+    <siteMapNode title="Прокат велосипедов" roles="admin, Прокатчик" xmlns="">
+      <siteMapNode title="Выдача велосипеда" description="" roles ="admin, Прокатчик" url="~/forms/VydachaVelosipeda/VydachaVelosipedaE.aspx" />
+      <siteMapNode title="Прием велосипеда" description="" roles ="admin, Прокатчик" url="~/forms/PriemVelosipeda/PriemVelosipedaE.aspx" />
+    </siteMapNode>
+    <siteMapNode title="Перевозка велосипедов" roles="admin, Водитель" xmlns="">
+      <siteMapNode title="Перевозка велосипеда" description="" url="~/forms/PerevozkaVelosipeda/PerevozkaVelosipedaL.aspx" />
     </siteMapNode>
     <siteMapNode title="Администрирование" roles="admin" >
       <siteMapNode title="Безопасность" roles="admin" >
@@ -30,8 +34,8 @@
       <siteMapNode title="Все справочники" roles="admin" url="~/forms/Spravochniki.aspx"/>
     </siteMapNode>
     <siteMapNode title ="Запросы" roles ="admin">
-      <siteMapNode title ="Запросы" roles ="admin" url="~/forms/Zaprosy.aspx"/>
       <siteMapNode title ="Запрос 1: рейтинг типов велосипедов" roles ="admin" url="~/forms/Zapros1.aspx"/>
+      <siteMapNode title ="Запрос 2: прибыль точек проката" roles ="admin" url="~/forms/Zapros2.aspx"/>
     </siteMapNode>
   </siteMapNode>
 </siteMap>

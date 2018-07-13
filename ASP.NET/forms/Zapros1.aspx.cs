@@ -16,6 +16,7 @@ using System.Runtime.Serialization;
 using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Web.Services;
+using IIS.Прокат_велосипедов_2.hndl;
 
 namespace IIS.Прокат_велосипедов_2
 {
@@ -110,54 +111,6 @@ namespace IIS.Прокат_велосипедов_2
         
     }
 
-    [DataContract]
-    public class JSONStruct
-    {
-        [DataMember]
-        public List<JSONCol> Columns;
-        [DataMember]
-        private List<List<string>> rows;
-
-        public JSONStruct()
-        {
-            Columns = new List<JSONCol>();
-            rows = new List<List<string>>();
-        }
-        public JSONStruct (List<JSONCol> _columns, List<List<string>> _rows)
-        {
-            Columns = _columns;
-            rows = _rows;
-        }
-
-        public void AddCol(string name, string type)
-        {
-            Columns.Add(new JSONCol(name, type));
-        }
-        public void AddRow(IEnumerable<string> row)
-        {
-            var rowAsList = new List<string>();
-            foreach( var el in row)
-            {
-                rowAsList.Add(el);
-            }
-            rows.Add(rowAsList);
-        }
-
-        
-    }
-    [DataContract]
-    public class JSONCol
-    {
-        [DataMember]
-        public string Name;
-        [DataMember]
-        public string Type;
-
-        public JSONCol(string _name, string _type)
-        {
-            Name = _name;
-            Type = _type;
-        }
-    }
+    
     
 }

@@ -32,6 +32,10 @@
     <DocumentationFile>bin\Release\Прокат_велосипедов_2.Objects.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ICSSoft.STORMNET.Business.LINQProvider, Version=1.0.0.0, Culture=neutral, PublicKeyToken=68e48bb6f6293778, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NewPlatform.Flexberry.ORM.4.1.0\lib\net45\ICSSoft.STORMNET.Business.LINQProvider.dll</HintPath>
+    </Reference>
     <Reference Include="System">
       <HintPath>System.dll</HintPath>
     </Reference>
@@ -89,9 +93,6 @@
     </Reference>
     <Reference Include="ICSSoft.STORMNET.Business.DRDataService">
       <HintPath>..\packages\NewPlatform.Flexberry.ORM.4.1.0\lib\net45\ICSSoft.STORMNET.Business.DRDataService.dll</HintPath>
-    </Reference>
-    <Reference Include="ICSSoft.STORMNET.Business.LINQProvider">
-      <HintPath>..\packages\NewPlatform.Flexberry.ORM.4.1.0\lib\net45\ICSSoft.STORMNET.Business.LINQProvider.dll</HintPath>
     </Reference>
     <Reference Include="ICSSoft.STORMNET.Business.LockService">
       <HintPath>..\packages\NewPlatform.Flexberry.ORM.4.1.0\lib\net45\ICSSoft.STORMNET.Business.LockService.dll</HintPath>

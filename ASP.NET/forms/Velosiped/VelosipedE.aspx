@@ -61,10 +61,10 @@
 </asp:ScriptManager>
 
 <div style="clear: left">
-	<ac:AjaxGroupEdit ID="ctrlИсторияСостояний" runat="server" ReadOnly="false" />
+	<ac:AjaxGroupEdit ID="ctrlПрокатВелосипеда" runat="server" ReadOnly="false" />
 </div>
 <div style="clear: left">
-	<ac:AjaxGroupEdit ID="ctrlПрокатВелосипеда" runat="server" ReadOnly="false" />
+	<ac:AjaxGroupEdit ID="ctrlИсторияСостояний" runat="server" ReadOnly="false" />
 </div>
 
 </div>

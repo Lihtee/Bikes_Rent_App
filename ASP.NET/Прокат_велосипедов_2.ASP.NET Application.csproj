@@ -324,6 +324,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="forms\TipVelosipeda\TipVelosipedaL.aspx" />
+    <Compile Include="forms\PriemVelosipeda\PriemVelosipedaE.aspx.designer.cs">
+      <DependentUpon>PriemVelosipedaE.aspx</DependentUpon>
+    </Compile>
     <Compile Include="forms\TipVelosipeda\TipVelosipedaL.aspx.cs">
       <DependentUpon>TipVelosipedaL.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -430,6 +433,8 @@
     <Compile Include="forms\VydachaVelosipeda\VydachaVelosipedaE.aspx.designer.cs">
       <DependentUpon>VydachaVelosipedaE.aspx</DependentUpon>
     </Compile>
+    <Compile Include="hndl\JSONrow.cs" />
+    <Compile Include="hndl\JSONstruct.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="shared\jstreeThemes\apple\bg.jpg" />
     <Content Include="shared\jstreeThemes\apple\d.png" />

@@ -33,6 +33,11 @@ namespace IIS.Прокат_велосипедов_2
         /// </summary>
         protected override void Preload()
         {
+            bool hasRights = RightManager.AccessCheck("Выдать велосипед");
+            if (!hasRights)
+            {
+                throw new Exception("У вас нет прав для выполнения этой операции");
+            }
         }
 
         /// <summary>
@@ -51,6 +56,7 @@ namespace IIS.Прокат_велосипедов_2
         {
             
             Page.Validate();
+            ctrlДатаНачала.ReadOnly = true;
             
         }
 
