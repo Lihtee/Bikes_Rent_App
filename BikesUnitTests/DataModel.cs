@@ -25,6 +25,7 @@ namespace BikesUnitTests
                 var состояниеВелосипеда =
                     ds.Query<СостояниеВелосипеда>("СостояниеВелосипедаL")
                     .FirstOrDefault();
+                
             }
             catch (Exception e)
             {

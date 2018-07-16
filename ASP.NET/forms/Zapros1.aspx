@@ -8,7 +8,7 @@
     <h1>Запросы</h1>
     <div class="main">
         <div class="requestBlock">
-            <p class ="header">Какой тип велосипедов пользуется наибольшей популярностью, а какой наименьшей?</p>
+            <p class ="header">Популярность велосипедов</p>
             <%--<p> 
                 Наибольшая популярность у <b class="res" id="mostPop" runat="server"></b>
             </p>
