@@ -15,6 +15,8 @@ using System.IO;
 using System.Runtime.Serialization.Json;
 using IIS.Прокат_велосипедов_2.hndl;
 using System.Web.Services;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace IIS.Прокат_велосипедов_2
 {
@@ -36,75 +38,159 @@ namespace IIS.Прокат_велосипедов_2
             {
                 to = DateTime.Now.ToShortDateString();
             }
+            var ds = DataServiceProvider.DataService;
             using (SqlConnection conn =
                 (SqlConnection)((SQLDataService)DataServiceProvider.DataService).GetConnection())
             {
-                string commandText = @"SELECT ТочкаПроката.Адрес, Доход - Расходы as Прибыль
-                                        FROM
-	                                        (SELECT 
-		                                        ТочкаПроката.primaryKey, 
-		                                        SUM( ПеревозкаВелосипеда.Стоимость) AS Расходы 
-	                                        FROM 
-		                                        ТочкаПроката INNER JOIN ПеревозкаВелосипеда ON ТочкаПроката.primaryKey = ПеревозкаВелосипеда.НачальнаяТочка_m0
-                                            WHERE
-                                                ПеревозкаВелосипеда.ДатаНачала between @DateFrom and @DateTo
-	                                        GROUP BY
-		                                         ТочкаПроката.primaryKey)""costs"" ,
-                                            (SELECT
-                                                ТочкаПроката.primaryKey,
-                                                SUM(ПрокатВелосипеда.ФактическаяСтоимость) as Доход
-                                            FROM
-                                                ТочкаПроката INNER JOIN ПрокатВелосипеда ON ТочкаПроката.primaryKey = ПрокатВелосипеда.ТочкаВыдачи
-                                            WHERE 
-                                                ПрокатВелосипеда.ДатаНачала between @DateFrom and @DateTo
-                                            GROUP BY 
-                                                ТочкаПроката.primaryKey)""incomes"",
-	                                        ТочкаПроката";
+                string  commandCostsText =
+                  @"select ПеревозкаВелосипеда.НачальнаяТочка_m0,cast(ПеревозкаВелосипеда.ДатаНачала as date) as Дата, SUM(Стоимость) as Расход
+                    from ПеревозкаВелосипеда 
+                    where ПеревозкаВелосипеда.ДатаНачала between @DateFrom and @DateTo
+                    GROUP BY ПеревозкаВелосипеда.НачальнаяТочка_m0, cast(ПеревозкаВелосипеда.ДатаНачала as date)
+                    order by Дата";
+                string commandProfitText =
+                    @"select ПрокатВелосипеда.ТочкаВыдачи as id ,cast(ПрокатВелосипеда.ДатаНачала as date) as Дата, SUM(ПрокатВелосипеда.ФактическаяСтоимость) as Доход
+                    from ПрокатВелосипеда 
+                    where ПрокатВелосипеда.ДатаНачала between @DateFrom and @DateTo
+                    GROUP BY ПрокатВелосипеда.ТочкаВыдачи, cast(ПрокатВелосипеда.ДатаНачала as date)
+                    order by Дата";
                 conn.Open();
-                SqlCommand com = new SqlCommand(commandText, conn);
-                SqlParameter dateFromPar = new SqlParameter
-                {
-                    DbType = DbType.DateTime,
-                    ParameterName = "@DateFrom",
-                    Value = Convert.ToDateTime(from),
-                };
-                SqlParameter dateToPar = new SqlParameter
-                {
-                    DbType = DbType.DateTime,
-                    ParameterName = "@DateTo",
-                    Value = Convert.ToDateTime(to),
-                };
-                com.Parameters.AddRange
-                    (new SqlParameter[] { dateFromPar, dateToPar });
+                SqlCommand getProfitCom = new SqlCommand(commandProfitText, conn);
+                SqlCommand getCostsCom = new SqlCommand(commandCostsText, conn);
+                
+                getProfitCom.Parameters.AddRange
+                    (new SqlParameter[]
+                    {
+                        GetParametr(DbType.DateTime, "@DateFrom", Convert.ToDateTime(from)),
+                        GetParametr(DbType.DateTime, "@DateTo", Convert.ToDateTime(to))
+                    });
+                getCostsCom.Parameters.AddRange
+                    (new SqlParameter[]
+                    {
+                        GetParametr(DbType.DateTime, "@DateFrom", Convert.ToDateTime(from)),
+                        GetParametr(DbType.DateTime, "@DateTo", Convert.ToDateTime(to))
+                    });
 
-                var reader = com.ExecuteReader();
-                JSONStruct toJSON = new JSONStruct();
-                toJSON.AddCol("Точка проката", "string");
-                toJSON.AddCol("Прибыль", "number");
-                while (reader.Read())
+                //Читаем прибыль.
+                var profitReader = getProfitCom.ExecuteReader();
+                List<TableRow> profitRows = new List<TableRow>();
+                
+                while (profitReader.Read())
                 {
-                    string[] row = new string[2];
-                    row[0] = reader.GetString(0);
-                    row[1] = reader.GetDecimal(1).ToString();
-                    toJSON.AddRow(row);
+                    profitRows.Add(new TableRow
+                    {
+                        id = profitReader.GetGuid(0).ToString(),
+                        date = profitReader.GetDateTime(1),
+                        value = profitReader.GetDecimal(2)
+                    });
+                }
+                profitReader.Close();
+                //Читаем расходы.
+                var costsReader = getCostsCom.ExecuteReader();
+                List<TableRow> costRows = new List<TableRow>();
+                while (costsReader.Read())
+                {
+                    costRows.Add(new TableRow
+                    {
+                        id = costsReader.GetGuid(0).ToString(),
+                        date = costsReader.GetDateTime(1),
+                        value = costsReader.GetDecimal(2)
+                    });
                 }
                 conn.Close();
 
-                string JSONAsString = string.Empty;
+                //Теперь нужно собрать таблицу с датами для линейного графика.
+                FillRows(profitRows, costRows);
+                FillRows(costRows, profitRows);
+
+                //После сортировки ожидается, что строки будут полностью сопоставимы по датам и точкам проката
+                profitRows = profitRows.OrderBy(x => x.date).OrderBy(x => x.id).ToList();
+                costRows= costRows.OrderBy(x => x.date).OrderBy(x => x.id).ToList();
+                
+                //Теперь собрать струкруту для json
+                int nrows = profitRows.Count;
+                var jsonStruct = new JSONStruct();
+
+                var rentPointsIds = profitRows.Select(x => x.id).Distinct();
+                jsonStruct.AddCol("Дата", "string");
+                foreach (var id in rentPointsIds)
+                {
+                    jsonStruct.AddCol(id, "number");
+                }
+                var dates = profitRows.Select(x => x.date).Distinct();
+                foreach (var date in dates)
+                {
+                    List<string> row = new List<string> { date.ToShortDateString() };
+                    foreach (var id in rentPointsIds)
+                    {
+                        decimal profit = profitRows
+                            .Where(x => x.date == date && x.id == id)
+                            .Select(x => x.value)
+                            .FirstOrDefault()
+                            -
+                            costRows
+                            .Where(x => x.date == date && x.id == id)
+                            .Select(x => x.value)
+                            .FirstOrDefault();
+                        row.Add(profit.ToString());
+                    }
+                    jsonStruct.AddRow(row);
+                }
+                string jsonString = string.Empty;
                 using (MemoryStream stream1 = new MemoryStream())
                 {
                     DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(JSONStruct));
-                    ser.WriteObject(stream1, toJSON);
+                    ser.WriteObject(stream1, jsonStruct);
                     using (StreamReader sr = new StreamReader(stream1))
                     {
                         stream1.Position = 0;
-                        JSONAsString = sr.ReadToEnd();
+                        jsonString = sr.ReadToEnd();
                     }
                 }
-                return JSONAsString;
+                return jsonString;
+
             }
 
         }
+        private static void  FillRows(List<TableRow> origin, List<TableRow> toComplete)
+        {
+            int originNRows = origin.Count;
+            for (int i = 0; i < originNRows; i++)
+            {
+                var cur = origin[i];
+                int contains = toComplete
+                                .Where(x => x.id == cur.id && x.date == cur.date)
+                                .Count();
+
+                if (contains == 0)
+                {
+                    toComplete.Add(new TableRow
+                    {
+                        id = cur.id,
+                        date = cur.date,
+                        value = 0
+                    });
+                }
+            }
+        }
+
+        private class TableRow
+        {
+            public string id;
+            public DateTime date;
+            public decimal value;
+        }
+
+        private static SqlParameter GetParametr(DbType dbType, string name, object value)
+        {
+            return new SqlParameter
+            {
+                DbType = dbType,
+                ParameterName = name,
+                Value = value,
+            };
+        }
+        
     }
 }
 
