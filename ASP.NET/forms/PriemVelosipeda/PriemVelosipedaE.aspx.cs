@@ -43,6 +43,7 @@ namespace IIS.Прокат_велосипедов_2
         /// </summary>
         protected override void PreApplyToControls()
         {
+            ctrlДатаПриема.ReadOnly = true;
             if (Request.QueryString["success"] == "true")
             {
                 Response.Redirect(ПриемВелосипедаE.FormPath);
