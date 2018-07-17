@@ -1,30 +1,26 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.9
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Прокат_велосипедов_2.ASP.NET Application", "ASP.NET\Прокат_велосипедов_2.ASP.NET Application.csproj", "{A1671580-20FD-4DD7-86A9-E9BE805687D6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BikesUnitTests", "BikesUnitTests\BikesUnitTests.csproj", "{183140EC-AD2F-4945-A8E5-EE0119F04EC2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Прокат_велосипедов_2.BusinessServers", "BusinessServers\Прокат_велосипедов_2.BusinessServers.csproj", "{07A6047D-2710-4E82-A887-46877DE20434}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Прокат_велосипедов_2.Objects", "Objects\Прокат_велосипедов_2.Objects.csproj", "{7205B2E5-3D24-4E36-B673-FB297DE06565}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BikesUnitTest_2", "BikesUnitTest_2\BikesUnitTest_2.csproj", "{F435C22F-A5A3-478B-BB80-3BE721D6EA8B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-Debug|Any CPU = Debug|Any CPU
-Release|Any CPU = Release|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{A1671580-20FD-4DD7-86A9-E9BE805687D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A1671580-20FD-4DD7-86A9-E9BE805687D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1671580-20FD-4DD7-86A9-E9BE805687D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1671580-20FD-4DD7-86A9-E9BE805687D6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{183140EC-AD2F-4945-A8E5-EE0119F04EC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{183140EC-AD2F-4945-A8E5-EE0119F04EC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{183140EC-AD2F-4945-A8E5-EE0119F04EC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{183140EC-AD2F-4945-A8E5-EE0119F04EC2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{07A6047D-2710-4E82-A887-46877DE20434}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{07A6047D-2710-4E82-A887-46877DE20434}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07A6047D-2710-4E82-A887-46877DE20434}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,8 +29,15 @@ Release|Any CPU = Release|Any CPU
 		{7205B2E5-3D24-4E36-B673-FB297DE06565}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7205B2E5-3D24-4E36-B673-FB297DE06565}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7205B2E5-3D24-4E36-B673-FB297DE06565}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F435C22F-A5A3-478B-BB80-3BE721D6EA8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F435C22F-A5A3-478B-BB80-3BE721D6EA8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F435C22F-A5A3-478B-BB80-3BE721D6EA8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F435C22F-A5A3-478B-BB80-3BE721D6EA8B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.2\lib\NET35
 	EndGlobalSection
 EndGlobal

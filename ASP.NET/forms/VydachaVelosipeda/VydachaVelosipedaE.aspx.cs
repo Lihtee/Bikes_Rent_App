@@ -8,6 +8,8 @@ namespace IIS.Прокат_велосипедов_2
     using ICSSoft.STORMNET.Business;
     using System.Web.Services;
     using System;
+    using IIS.University.Tools;
+    using System.Text;
 
     public partial class ВыдачаВелосипедаE : BaseEditForm<ВыдачаВелосипеда>
     {
@@ -96,47 +98,88 @@ namespace IIS.Прокат_велосипедов_2
             (string startDate ,string plannedDuration, string plannedPrice,
              string startPoint, string vel, string klient, string employee)
         {
-            try
+            StringBuilder errorMessageBuilder = new StringBuilder();
+             try
             {
-                var ds = DataServiceProvider.DataService;
+                //Проверка входных парамтеров
+                DateTime checkedStartDate = new DateTime();
+                if (!DateTime.TryParse(startDate, out checkedStartDate))
+                {
+                    errorMessageBuilder.Append("Дата начала неправильная. ");
+                }
 
-                var velObj = new Велосипед { __PrimaryKey = (vel).ToString() };
-                ds.LoadObject(velObj);
+                int checkedPlannedDuration = 0;
+                if (!Int32.TryParse(plannedDuration, out checkedPlannedDuration))
+                {
+                    errorMessageBuilder.Append("Планируемое время неправильное. ");
+                }
 
-                var startPointObj = new ТочкаПроката { __PrimaryKey = (startPoint).ToString() };
-                ds.LoadObject(startPointObj);
+                decimal checkedPlannedPrice = 0;
+                if (!decimal.TryParse(plannedPrice, out checkedPlannedPrice))
+                {
+                    errorMessageBuilder.Append("Планируемая стоимость неправильная. ");
+                }
 
-                var employeeObj = new Сотрудник { __PrimaryKey = (employee).ToString() };
-                ds.LoadObject(employeeObj);
+                Guid checkedStartPoint = new Guid();
+                if (!Guid.TryParse(startPoint, out checkedStartPoint))
+                {
+                    errorMessageBuilder.Append("Точка выдачи неправильная. ");
+                }
 
-                var clientObj = new Клиент { __PrimaryKey = (klient).ToString() };
-                ds.LoadObject(clientObj);
 
+                Guid checkedVel= new Guid();
+                if (!Guid.TryParse(vel, out checkedVel))
+                {
+                    errorMessageBuilder.Append("Велосипед неправильный. ");
+                }
+
+
+                Guid checkedKlient= new Guid();
+                if (!Guid.TryParse(klient, out checkedKlient))
+                {
+                    errorMessageBuilder.Append("Клиент неправильный. ");
+                }
+
+                Guid checkedEmployee= new Guid();
+                if (!Guid.TryParse(employee, out checkedEmployee))
+                {
+                    errorMessageBuilder.Append("Прокатчик неправильный. ");
+                }
+
+                if (errorMessageBuilder.Length != 0)
+                {
+                    throw new Exception(errorMessageBuilder.ToString());
+                }
+
+                //Заполнение объекта для сохранения.
+                
                 var storedObject = new IIS.Прокат_велосипедов_2.ПрокатВелосипеда
                 {
-                    ДатаНачала = DateTime.Parse(startDate),
-                    Велосипед = velObj,
-                    ПлановаяСтоимость = Int32.Parse(plannedPrice),
-                    ПлановаяДлительность = Int32.Parse(plannedDuration),
-                    ТочкаВыдачи = startPointObj,
+                    ДатаНачала = checkedStartDate,
+                    Велосипед = PKHelper.CreateDataObject<Велосипед>(checkedVel),
+                    ПлановаяСтоимость = checkedPlannedPrice,
+                    ПлановаяДлительность = checkedPlannedDuration,
+                    ТочкаВыдачи = PKHelper.CreateDataObject<ТочкаПроката>(checkedStartPoint),
                     ТочкаСдачи = null,
-                    Прокатчик = employeeObj,
-                    Клиент = clientObj,
+                    Прокатчик = PKHelper.CreateDataObject<Сотрудник>(checkedEmployee),
+                    Клиент = PKHelper.CreateDataObject<Клиент>(klient),
                     ФактическаяДатаСдачи = null,
                     ФактическаяСтоимость = 0
                 };
 
-                
+                //Сохранение и прочее
+                var ds = DataServiceProvider.DataService;
                 ds.UpdateObject(storedObject);
-
+                var loadedVel = new Велосипед { __PrimaryKey = checkedVel };
+                ds.LoadObject(loadedVel);
                 string uLogin = ICSSoft.Services.CurrentUserService.CurrentUser.Login;
-                LogService.LogInfo($"Пользователь {uLogin} совершил выдачу велосипеда {velObj.Номер} ");
+                LogService.LogInfo($"Пользователь {uLogin} совершил выдачу велосипеда {loadedVel.Номер.ToString()} ");
 
                 return "1";
             }
             catch (System.Exception e )
             {
-                return "0";
+                return e.Message;
             }
 
         }

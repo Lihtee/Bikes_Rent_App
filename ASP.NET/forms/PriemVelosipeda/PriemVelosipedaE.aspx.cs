@@ -44,6 +44,7 @@ namespace IIS.Прокат_велосипедов_2
         protected override void PreApplyToControls()
         {
             ctrlДатаПриема.ReadOnly = true;
+            SaveBtn.Visible = false;
             if (Request.QueryString["success"] == "true")
             {
                 Response.Redirect(ПриемВелосипедаE.FormPath);
@@ -81,7 +82,7 @@ namespace IIS.Прокат_велосипедов_2
         /// <returns>Объект данных, который сохранился.</returns>
         protected override DataObject SaveObject()
         {
-            //TODO вывести уведомление о том, что сохранение прошло успешно
+            
 
             try
             {

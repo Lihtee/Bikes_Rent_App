@@ -430,6 +430,7 @@
     <Compile Include="forms\Sotrudnik\SotrudnikE.aspx.designer.cs">
       <DependentUpon>SotrudnikE.aspx</DependentUpon>
     </Compile>
+    <Compile Include="forms\VidatVelosipedController.cs" />
     <Compile Include="forms\VydachaVelosipeda\VydachaVelosipedaE.aspx.designer.cs">
       <DependentUpon>VydachaVelosipedaE.aspx</DependentUpon>
     </Compile>
@@ -881,6 +882,7 @@
       <DependentUpon>LoginForm.aspx</DependentUpon>
     </Compile>
     <Content Include="favicon.ico" />
+    <Compile Include="WebApiConfig.cs" />
     <Compile Include="WOLVSettApplyer.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="App_GlobalResources\Resource.designer.cs" />

@@ -113,12 +113,10 @@
         var response;
         $.ajax({
             <%--url: "<%= ResolveUrl("~/forms/VydachaVelosipeda/VydachaVelosipeda.aspx/MySaveObject")%>",--%>
-            url:"VydachaVelosipedaE.aspx/MySaveObject",
+            url:'api/VidatVelosiped',
             type: "POST",
             data: JSON.stringify(obj),
             contentType: 'application/json; charset=utf-8',
-            //dataType: 'json',
-            //TODO отреагировать на результат запроса
             success: function (result) {
                 response = result.d;
                 if (response == '1') {
