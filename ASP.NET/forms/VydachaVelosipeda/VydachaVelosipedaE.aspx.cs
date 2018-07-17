@@ -128,6 +128,10 @@ namespace IIS.Прокат_велосипедов_2
 
                 
                 ds.UpdateObject(storedObject);
+
+                string uLogin = ICSSoft.Services.CurrentUserService.CurrentUser.Login;
+                LogService.LogInfo($"Пользователь {uLogin} совершил выдачу велосипеда {velObj.Номер} ");
+
                 return "1";
             }
             catch (System.Exception e )

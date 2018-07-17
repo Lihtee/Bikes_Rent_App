@@ -92,6 +92,13 @@ namespace IIS.Прокат_велосипедов_2
                     = (ICSSoft.STORMNET.UserDataTypes.NullableDateTime)DataObject.ДатаПриема;
                 storedObj.ФактическаяСтоимость = DataObject.ФактическаяСтоимость;
                 ds.UpdateObject(storedObj);
+
+                var cycle = storedObj.Велосипед;
+                ds.LoadObject(cycle);
+
+                string uLogin = ICSSoft.Services.CurrentUserService.CurrentUser.Login;
+                LogService.LogInfo($"Пользователь {uLogin} совершил прием велосипеда {cycle.Номер} ");
+
                 Response.Redirect(ПриемВелосипедаE.FormPath +  "?success=true");
                 return DataObject;
             }
@@ -102,7 +109,7 @@ namespace IIS.Прокат_велосипедов_2
         }
         protected void btnSaveClick(object sender, System.EventArgs e)
         {
-            SaveObject();
+           SaveObject();
         }
     }
 }

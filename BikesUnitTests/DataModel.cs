@@ -5,6 +5,7 @@ using IIS.Прокат_велосипедов_2;
 using ICSSoft.STORMNET.Business.LINQProvider;
 using System.Linq;
 
+
 namespace BikesUnitTests
 {
     /// <summary>
@@ -25,7 +26,7 @@ namespace BikesUnitTests
                 var состояниеВелосипеда =
                     ds.Query<СостояниеВелосипеда>("СостояниеВелосипедаL")
                     .FirstOrDefault();
-                
+                //NewPlatform.Flexberry.SecurityManager
             }
             catch (Exception e)
             {
