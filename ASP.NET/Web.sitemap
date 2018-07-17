@@ -38,6 +38,7 @@
       <siteMapNode title ="Запрос 2: прибыль точек проката" roles ="admin" url="~/forms/Zapros2.aspx"/>
       <siteMapNode title ="Запрос 3: сломанные и украденные велосипеды" roles ="admin" url="~/forms/Zapros3.aspx"/>
       <siteMapNode title ="Запрос 4: количество перевозок велосипеда" roles ="admin" url="~/forms/Zapros4.aspx"/>
+      <siteMapNode title ="Запрос 5: средняя длительность проката" roles ="admin" url="~/forms/Zapros5.aspx"/>
     </siteMapNode>
   </siteMapNode>
 </siteMap>
