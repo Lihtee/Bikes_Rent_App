@@ -1,0 +1,12 @@
+﻿.myDatePicker {
+    width: 120px;
+    display: inline-block;
+}
+
+.paramsLine {
+    display: inline-block;
+}
+
+.header {
+    font-weight: bold;
+}

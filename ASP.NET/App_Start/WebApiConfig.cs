@@ -23,6 +23,12 @@ namespace ICSSoft.STORMNET.Web
             //config.Routes.MapHttpRoute("DefaultApi", "api/{controller}/{action}");
             
             config.MapHttpAttributeRoutes();
+            config.Routes.MapHttpRoute(
+                name: "MapByAction",
+                routeTemplate: "api/{controller}/{action}/{id}",
+                defaults: new { id = RouteParameter.Optional }
+            );
         }
+       
     }
 }

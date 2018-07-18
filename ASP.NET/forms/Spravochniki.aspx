@@ -5,6 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="AddToHeadPlaceholder" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <link rel="stylesheet" href="../shared/MyStyles/Catalog.css" />
     <h1>
         Справочники
     </h1>
@@ -30,36 +31,6 @@
             </ul>
         </div>
     </div>
-    <style>
-        li{display:block}
-        .listBlock {
-            border-top: 2px solid lightgrey;
-            position: relative;
-            display: inline-block;
-            width: 40%;
-            height: 200px;
-            padding-top: 10px;
-            padding-left: 10px;
-            margin-left: 10px;
-        }
-        .listTitle {
-            font-size: 14px;
-        }
-        li a {
-            text-decoration: none;
-            color: cornflowerblue;
-        }
-        ul{
-            padding-left:0px;
-        }
-        .listItem a:hover{
-            text-decoration:underline;
-            color: cornflowerblue;
-        }
-        h1{
-            margin-left: 21px;
-        }
-    </style>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder0" runat="server">
 </asp:Content>

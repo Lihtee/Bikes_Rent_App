@@ -5,6 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="AddToHeadPlaceholder" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <link rel="stylesheet" href="../shared/MyStyles/Request.css" />
     <h1>Запросы</h1>
     <div class="main">
         <div class="requestBlock">
@@ -34,18 +35,7 @@
     3)	Сколько велосипедов было испорчено или украдено за месяц?
     4)	Сколько велосипедов было перевезено между точками на специальном автомобиле для балансировки?
     5)	Какова средняя продолжительность проката велосипеда?--%>
-    <style>
-        .myDatePicker{
-            width:120px;
-            display:inline-block;
-        }
-        .paramsLine{
-            display:inline-block;
-        }
-        .header{
-            font-weight: bold;
-        }
-    </style>
+    
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder0" runat="server">
     <%--<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>--%>

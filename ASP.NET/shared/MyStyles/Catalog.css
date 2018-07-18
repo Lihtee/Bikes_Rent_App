@@ -1,0 +1,36 @@
+﻿li {
+    display: block
+}
+
+.listBlock {
+    border-top: 2px solid lightgrey;
+    position: relative;
+    display: inline-block;
+    width: 40%;
+    height: 200px;
+    padding-top: 10px;
+    padding-left: 10px;
+    margin-left: 10px;
+}
+
+.listTitle {
+    font-size: 14px;
+}
+
+li a {
+    text-decoration: none;
+    color: cornflowerblue;
+}
+
+ul {
+    padding-left: 0px;
+}
+
+.listItem a:hover {
+    text-decoration: underline;
+    color: cornflowerblue;
+}
+
+h1 {
+    margin-left: 21px;
+}

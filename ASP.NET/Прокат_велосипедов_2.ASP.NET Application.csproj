@@ -319,6 +319,8 @@
     <Compile Include="forms\Klient\KlientE.aspx.designer.cs">
       <DependentUpon>KlientE.aspx</DependentUpon>
     </Compile>
+    <Content Include="shared\MyStyles\Catalog.css" />
+    <Content Include="shared\MyStyles\Request.css" />
     <Content Include="shared\script\GoogleCharts.js" />
     <Content Include="Web.sitemap">
       <SubType>Designer</SubType>
@@ -882,7 +884,6 @@
       <DependentUpon>LoginForm.aspx</DependentUpon>
     </Compile>
     <Content Include="favicon.ico" />
-    <Compile Include="WebApiConfig.cs" />
     <Compile Include="WOLVSettApplyer.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="App_GlobalResources\Resource.designer.cs" />
