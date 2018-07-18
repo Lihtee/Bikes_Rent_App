@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
 using System.Web;
 
 namespace IIS.Прокат_велосипедов_2.hndl
@@ -37,6 +39,21 @@ namespace IIS.Прокат_велосипедов_2.hndl
                 rowAsList.Add(el);
             }
             rows.Add(rowAsList);
+        }
+        public override string ToString()
+        {
+            string res = string.Empty;
+            using (MemoryStream stream1 = new MemoryStream())
+            {
+                DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(JSONStruct));
+                ser.WriteObject(stream1, this);
+                using (StreamReader sr = new StreamReader(stream1))
+                {
+                    stream1.Position = 0;
+                    res = sr.ReadToEnd();
+                }
+            }
+            return res;
         }
 
 

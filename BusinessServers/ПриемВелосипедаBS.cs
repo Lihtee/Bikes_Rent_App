@@ -42,18 +42,18 @@ namespace IIS.Прокат_велосипедов_2
         public virtual ICSSoft.STORMNET.DataObject[] OnUpdateПриемВелосипеда(IIS.Прокат_велосипедов_2.ПриемВелосипеда UpdatedObject)
         {
             // *** Start programmer edit section *** (OnUpdateПриемВелосипеда)
-            if (((DataObject)UpdatedObject).GetStatus() == ObjectStatus.Created)
-            {
-                var storedObject = UpdatedObject.ПрокатВелосипеда;
+            //if (((DataObject)UpdatedObject).GetStatus() == ObjectStatus.Created)
+            //{
+            //    var storedObject = UpdatedObject.ПрокатВелосипеда;
 
-                storedObject.ФактическаяДатаСдачи = (NullableDateTime)UpdatedObject.ДатаПриема;
-                storedObject.ФактическаяСтоимость = UpdatedObject.ФактическаяСтоимость;
-                storedObject.Прокатчик = UpdatedObject.Прокатчик;
+            //    storedObject.ФактическаяДатаСдачи = (NullableDateTime)UpdatedObject.ДатаПриема;
+            //    storedObject.ФактическаяСтоимость = UpdatedObject.ФактическаяСтоимость;
+            //    storedObject.Прокатчик = UpdatedObject.Прокатчик;
 
-                storedObject.SetStatus(ObjectStatus.Altered);
-                ((DataObject)UpdatedObject).SetStatus(ObjectStatus.UnAltered);
+            //    storedObject.SetStatus(ObjectStatus.Altered);
+            //    ((DataObject)UpdatedObject).SetStatus(ObjectStatus.UnAltered);
                
-            }
+            //}
             return new ICSSoft.STORMNET.DataObject[0];
             // *** End programmer edit section *** (OnUpdateПриемВелосипеда)
         }

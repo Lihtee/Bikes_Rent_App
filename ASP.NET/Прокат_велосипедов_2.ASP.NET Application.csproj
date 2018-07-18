@@ -436,8 +436,8 @@
     <Compile Include="forms\VydachaVelosipeda\VydachaVelosipedaE.aspx.designer.cs">
       <DependentUpon>VydachaVelosipedaE.aspx</DependentUpon>
     </Compile>
-    <Compile Include="hndl\JSONrow.cs" />
-    <Compile Include="hndl\JSONstruct.cs" />
+    <Compile Include="hndl\JSONstruct1.cs" />
+    <Compile Include="hndl\JSONcol1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="shared\jstreeThemes\apple\bg.jpg" />
     <Content Include="shared\jstreeThemes\apple\d.png" />

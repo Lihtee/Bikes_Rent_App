@@ -54,50 +54,60 @@ namespace IIS.Прокат_велосипедов_2
                     where ПрокатВелосипеда.ДатаНачала between @DateFrom and @DateTo
                     GROUP BY ПрокатВелосипеда.ТочкаВыдачи, cast(ПрокатВелосипеда.ДатаНачала as date)
                     order by Дата";
-                conn.Open();
-                SqlCommand getProfitCom = new SqlCommand(commandProfitText, conn);
-                SqlCommand getCostsCom = new SqlCommand(commandCostsText, conn);
-                
-                getProfitCom.Parameters.AddRange
-                    (new SqlParameter[]
-                    {
-                        GetParametr(DbType.DateTime, "@DateFrom", Convert.ToDateTime(from)),
-                        GetParametr(DbType.DateTime, "@DateTo", Convert.ToDateTime(to))
-                    });
-                getCostsCom.Parameters.AddRange
-                    (new SqlParameter[]
-                    {
-                        GetParametr(DbType.DateTime, "@DateFrom", Convert.ToDateTime(from)),
-                        GetParametr(DbType.DateTime, "@DateTo", Convert.ToDateTime(to))
-                    });
 
-                //Читаем прибыль.
-                var profitReader = getProfitCom.ExecuteReader();
                 List<TableRow> profitRows = new List<TableRow>();
-                
-                while (profitReader.Read())
-                {
-                    profitRows.Add(new TableRow
-                    {
-                        id = profitReader.GetGuid(0).ToString(),
-                        date = profitReader.GetDateTime(1),
-                        value = profitReader.GetDecimal(2)
-                    });
-                }
-                profitReader.Close();
-                //Читаем расходы.
-                var costsReader = getCostsCom.ExecuteReader();
                 List<TableRow> costRows = new List<TableRow>();
-                while (costsReader.Read())
+                try
                 {
-                    costRows.Add(new TableRow
+                    conn.Open();
+                    SqlCommand getProfitCom = new SqlCommand(commandProfitText, conn);
+                    SqlCommand getCostsCom = new SqlCommand(commandCostsText, conn);
+
+
+                    //Хотя парметры в обоих запросах одинаковые, если один и тот же использовать в 
+                    //нескольких запросах, то получим исключение. Поэтому генерируются одинаковые параметры.
+                    getProfitCom.Parameters.AddRange
+                        (new SqlParameter[]
+                        {
+                        GetParametr(DbType.DateTime, "@DateFrom", Convert.ToDateTime(from)),
+                        GetParametr(DbType.DateTime, "@DateTo", Convert.ToDateTime(to))
+                        });
+                    getCostsCom.Parameters.AddRange
+                        (new SqlParameter[]
+                        {
+                        GetParametr(DbType.DateTime, "@DateFrom", Convert.ToDateTime(from)),
+                        GetParametr(DbType.DateTime, "@DateTo", Convert.ToDateTime(to))
+                        });
+
+                    //Читаем прибыль.
+                    var profitReader = getProfitCom.ExecuteReader();
+                    while (profitReader.Read())
                     {
-                        id = costsReader.GetGuid(0).ToString(),
-                        date = costsReader.GetDateTime(1),
-                        value = costsReader.GetDecimal(2)
-                    });
+                        profitRows.Add(new TableRow
+                        {
+                            id = profitReader.GetGuid(0).ToString(),
+                            date = profitReader.GetDateTime(1),
+                            value = profitReader.GetDecimal(2)
+                        });
+                    }
+                    profitReader.Close();
+                    //Читаем расходы.
+                    var costsReader = getCostsCom.ExecuteReader();
+                    while (costsReader.Read())
+                    {
+                        costRows.Add(new TableRow
+                        {
+                            id = costsReader.GetGuid(0).ToString(),
+                            date = costsReader.GetDateTime(1),
+                            value = costsReader.GetDecimal(2)
+                        });
+                    }
+                    conn.Close();
                 }
-                conn.Close();
+                catch (Exception e )
+                {
+                    throw new Exception("Ошибка при работе с БД: " + e.Message);
+                }
 
                 //Теперь нужно собрать таблицу с датами для линейного графика.
                 FillRows(profitRows, costRows);
@@ -136,22 +146,16 @@ namespace IIS.Прокат_велосипедов_2
                     }
                     jsonStruct.AddRow(row);
                 }
-                string jsonString = string.Empty;
-                using (MemoryStream stream1 = new MemoryStream())
-                {
-                    DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(JSONStruct));
-                    ser.WriteObject(stream1, jsonStruct);
-                    using (StreamReader sr = new StreamReader(stream1))
-                    {
-                        stream1.Position = 0;
-                        jsonString = sr.ReadToEnd();
-                    }
-                }
-                return jsonString;
+                return jsonStruct.ToString();
 
             }
 
         }
+        /// <summary>
+        /// Сопоставляет строки: возмещает недостающие строки во второй таблице строками с value = 0.
+        /// </summary>
+        /// <param name="origin">Таблица, согласно которой нужно возместить недостающие строки.</param>
+        /// <param name="toComplete">Таблица, в которой нужно возместить недостающие строки.</param>
         private static void  FillRows(List<TableRow> origin, List<TableRow> toComplete)
         {
             int originNRows = origin.Count;

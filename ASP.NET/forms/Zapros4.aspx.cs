@@ -44,48 +44,44 @@ namespace IIS.Прокат_велосипедов_2
 					    inner join ТочкаПроката on ТочкаПроката.primaryKey = ПеревозкаВелосипеда.НачальнаяТочка_m0
                         where ПеревозкаВелосипеда.ДатаНачала between @DateFrom and @DateTo
                         group by ТочкаПроката.primaryKey, ТочкаПроката.Адрес";
-                conn.Open();
-                SqlCommand com = new SqlCommand(commandText, conn);
-                SqlParameter dateFromPar = new SqlParameter
-                {
-                    DbType = DbType.DateTime,
-                    ParameterName = "@DateFrom",
-                    Value = Convert.ToDateTime(from),
-                };
-                SqlParameter dateToPar = new SqlParameter
-                {
-                    DbType = DbType.DateTime,
-                    ParameterName = "@DateTo",
-                    Value = Convert.ToDateTime(to),
-                };
-                com.Parameters.AddRange
-                    (new SqlParameter[] { dateFromPar, dateToPar });
-
-                var reader = com.ExecuteReader();
                 JSONStruct toJSON = new JSONStruct();
-                toJSON.AddCol("Точка проката", "string");
-                toJSON.AddCol("Перевезнно велосипедов", "number");
-                while (reader.Read())
+                try
                 {
-                    string[] row = new string[2];
-                    row[0] = reader.GetString(0);
-                    row[1] = reader.GetInt32(1).ToString();
-                    toJSON.AddRow(row);
-                }
-                conn.Close();
-
-                string JSONAsString = string.Empty;
-                using (MemoryStream stream1 = new MemoryStream())
-                {
-                    DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(JSONStruct));
-                    ser.WriteObject(stream1, toJSON);
-                    using (StreamReader sr = new StreamReader(stream1))
+                    conn.Open();
+                    SqlCommand com = new SqlCommand(commandText, conn);
+                    SqlParameter dateFromPar = new SqlParameter
                     {
-                        stream1.Position = 0;
-                        JSONAsString = sr.ReadToEnd();
+                        DbType = DbType.DateTime,
+                        ParameterName = "@DateFrom",
+                        Value = Convert.ToDateTime(from),
+                    };
+                    SqlParameter dateToPar = new SqlParameter
+                    {
+                        DbType = DbType.DateTime,
+                        ParameterName = "@DateTo",
+                        Value = Convert.ToDateTime(to),
+                    };
+                    com.Parameters.AddRange
+                        (new SqlParameter[] { dateFromPar, dateToPar });
+
+                    var reader = com.ExecuteReader();
+                    toJSON.AddCol("Точка проката", "string");
+                    toJSON.AddCol("Перевезнно велосипедов", "number");
+                    while (reader.Read())
+                    {
+                        string[] row = new string[2];
+                        row[0] = reader.GetString(0);
+                        row[1] = reader.GetInt32(1).ToString();
+                        toJSON.AddRow(row);
                     }
+                    conn.Close();
                 }
-                return JSONAsString;
+                catch (Exception e)
+                {
+                    throw new Exception("Ошибка при работе с БД: " + e.Message);
+                }
+
+                return toJSON.ToString();
             }
 
         }
