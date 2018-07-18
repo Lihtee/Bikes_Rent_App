@@ -11,13 +11,12 @@ using System.Web.Http;
 
 namespace IIS.Прокат_велосипедов_2.forms
 {
-    [Route("api/[VidatVelosiped]")]
     public class VidatVelosipedController : ApiController
     {
-        //TODO перенести код из вебметода сюда.
+        //TODO сделать так, чтобы сервер находил метод контроллера.
 
         [HttpPost]
-        public void Post (VidatVelosiped obj)
+        public IHttpActionResult Post ([FromBody]VidatVelosiped obj)
             //(string startDate, string plannedDuration, string plannedPrice,
             // string startPoint, string vel, string klient, string employee)
         {
@@ -98,12 +97,11 @@ namespace IIS.Прокат_велосипедов_2.forms
                 string uLogin = ICSSoft.Services.CurrentUserService.CurrentUser.Login;
                 LogService.LogInfo($"Пользователь {uLogin} совершил выдачу велосипеда {loadedVel.Номер.ToString()} ");
 
-                
-                
+                return Json<object>(new { result = "sucess" });
             }
             catch (System.Exception e)
             {
-                throw e;
+                return Json<object>( new { result = "error", errorMessage = e.Message });
             }
         }
     }

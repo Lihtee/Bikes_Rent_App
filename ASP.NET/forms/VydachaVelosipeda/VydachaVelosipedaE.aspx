@@ -113,13 +113,15 @@
         var response;
         $.ajax({
             <%--url: "<%= ResolveUrl("~/forms/VydachaVelosipeda/VydachaVelosipeda.aspx/MySaveObject")%>",--%>
-            url:'api/VidatVelosiped',
+            //url начинается из корня.
+            url:'/api/VidatVelosiped/Post',
             type: "POST",
             data: JSON.stringify(obj),
-            contentType: 'application/json; charset=utf-8',
+            contentType: 'application/json',
+            dataType: 'json',
             success: function (result) {
-                response = result.d;
-                if (response == '1') {
+
+                if (result.result == 'sucess') {
                     $.ics.dialog.confirm({
                         message: 'Выдать еще один велосипед?',
                         title: 'Оформление еще одной выдачи',
@@ -133,9 +135,9 @@
                             }
                         }
                     });
-                } else {
+                } else if (result.result == 'error') {
                     $.ics.dialog.confirm({
-                        message: 'Ошибка при создании проката. Скорее всего, не заполнены некоторые поля',
+                        message: 'Ошибка при создании проката: ' + result.errorMessage,
                         title: 'Ошибка',
                         callback: function (res) {
 
@@ -143,9 +145,8 @@
                     });
                 }
             },
-            //TODO: В случае ошибка 401 можно выводить уведомление
-            error: function () {
-                alert("Some error")
+            error: function (a,b,c) {
+                alert(a + "; " + b + "; " + c);
             },
             
 
