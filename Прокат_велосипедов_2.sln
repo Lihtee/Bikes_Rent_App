@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Прокат_велосип
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BikesUnitTest_2", "BikesUnitTest_2\BikesUnitTest_2.csproj", "{F435C22F-A5A3-478B-BB80-3BE721D6EA8B}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DataBase", "DataBase\DataBase.sqlproj", "{A6CB75DF-618B-4FAB-BEDA-98393111F59A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,12 @@ Global
 		{F435C22F-A5A3-478B-BB80-3BE721D6EA8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F435C22F-A5A3-478B-BB80-3BE721D6EA8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F435C22F-A5A3-478B-BB80-3BE721D6EA8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6CB75DF-618B-4FAB-BEDA-98393111F59A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6CB75DF-618B-4FAB-BEDA-98393111F59A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6CB75DF-618B-4FAB-BEDA-98393111F59A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{A6CB75DF-618B-4FAB-BEDA-98393111F59A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6CB75DF-618B-4FAB-BEDA-98393111F59A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6CB75DF-618B-4FAB-BEDA-98393111F59A}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
