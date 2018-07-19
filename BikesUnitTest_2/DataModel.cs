@@ -8,22 +8,12 @@ using ICSSoft.STORMNET.Security;
 
 namespace BikesUnitTest_2
 {
-    [TestClass]
-    public class DataModel
-    {
         /// <summary>
         /// Проверка соответствия структуры БД структуре классов
         /// </summary>
-
-        private IDataService ds;
-
-        public DataModel()
-        {
-            //Решение с форума: на основе стандартного ds создать аналогичный, но с пустым sm.
-            var tds = DataServiceProvider.DataService;
-            ds = (IDataService)Activator.CreateInstance(tds.GetType(), new EmptySecurityManager());
-            ds.CustomizationString = tds.CustomizationString;
-        }
+    [TestClass]
+    public class DataModel
+    {
         [TestMethod]
         public void CheckСостояниеВелосипеда()
         {
@@ -115,12 +105,13 @@ namespace BikesUnitTest_2
         {
             try
             {
-                var obj = ds.Query<T>().FirstOrDefault();
+                var obj = TestHelper.DS.Query<T>().FirstOrDefault();
                 if (!stored)
                 {
                     Assert.Fail($"Несответствие в классе {typeof(T)}. Данный класс не должен быть хранимым.");
                 }
             }
+            
             
             catch (Exception e)
             {
