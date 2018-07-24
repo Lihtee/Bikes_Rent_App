@@ -4,7 +4,10 @@ using ICSSoft.STORMNET.Business;
 using ICSSoft.STORMNET.Business.LINQProvider;
 using IIS.Прокат_велосипедов_2;
 using System.Linq;
+using System.Reflection;
+using System.Text;
 using ICSSoft.STORMNET.Security;
+using ICSSoft.STORMNET;
 
 namespace BikesUnitTest_2
 {
@@ -14,111 +17,65 @@ namespace BikesUnitTest_2
     [TestClass]
     public class DataModel
     {
-        [TestMethod]
-        public void CheckСостояниеВелосипеда()
-        {
-            Check<СостояниеВелосипеда>();
-        }
-
-        [TestMethod]
-        public void CheckВелосипед()
-        {
-            Check<Велосипед>();
-        }
-
-        [TestMethod]
-        public void CheckВелосипедВПеревозке()
-        {
-            Check<ВелосипедВПеревозке>();
-        }
-
-        [TestMethod]
-        public void CheckВыдачаВелосипеда()
-        {
-            Check<ВыдачаВелосипеда>(false);
-        }
-
-        [TestMethod]
-        public void CheckИсторияРасценок()
-        {
-            Check<ИсторияРасценок>();
-        }
-
-
-        [TestMethod]
-        public void CheckИсторияСостояний()
-        {
-            Check<ИсторияСостояний>();
-        }
-
-        [TestMethod]
-        public void CheckКлиент()
-        {
-            Check<Клиент>();
-        }
-
-
-        [TestMethod]
-        public void CheckПеревозкаВелосипеда()
-        {
-            Check<ПеревозкаВелосипеда>();
-        }
-
-
-        [TestMethod]
-        public void CheckПриемВелосипеда()
-        {
-            Check<ПриемВелосипеда>(false);
-        }
-
-
-        [TestMethod]
-        public void CheckПрокатВелосипеда()
-        {
-            Check<ПрокатВелосипеда>();
-        }
-
-
-        [TestMethod]
-        public void CheckСотрудник()
-        {
-            Check<Сотрудник>();
-        }
-
-        [TestMethod]
-        public void CheckТипВелосипеда()
-        {
-            Check<ТипВелосипеда>();
-        }
-        [TestMethod]
-        public void CheckТочкаПроката()
-        {
-            Check<ТочкаПроката>();
-        }
-
         /// <summary>
-        /// Унивесальный метод для проверки соответствия класса таблице БД.
+        /// Универсальный метод для проверки соответствия классов таблицам БД.
         /// </summary>
-        /// <typeparam name="T">Тип, наследуемый от DataObject</typeparam>
-        /// <param name="stored">Хранимый ли класс, по умолчанию false</param>
-        public void Check<T>(bool stored=true) where T : ICSSoft.STORMNET.DataObject
+        [TestMethod]
+        public void CheckFromReflection()
         {
-            try
+            //Создаем велосипед, чтобы загрузилась сборка.
+            var vel = new Велосипед();
+            var ass = AppDomain.CurrentDomain
+                .GetAssemblies()
+                .FirstOrDefault(x => x.FullName.Contains("Прокат_велосипедов_2.Objects"));
+            if (ass == null)
             {
-                var obj = TestHelper.DS.Query<T>().FirstOrDefault();
-                if (!stored)
+                Assert.Fail("Не загружается сборка");
+            }
+
+            Assembly a = Assembly.Load(ass.FullName);
+            var types = a.GetTypes().Where(x => x.BaseType == typeof(DataObject)).ToList();
+            var ds = TestHelper.DS;
+
+            var sb = new StringBuilder();
+            foreach (var t in types)
+            {
+                object obj = Activator.CreateInstance(t);
+                View v = new View();
+                v.DefineClassType = t;
+                var lcs = LoadingCustomizationStruct.GetSimpleStruct(t, v);
+                var notStoredAttribute = t.GetCustomAttribute(typeof(NotStoredAttribute));
+                try
                 {
-                    Assert.Fail($"Несответствие в классе {typeof(T)}. Данный класс не должен быть хранимым.");
+                    var objects = ds.LoadObjects(lcs);
+                    if ( notStoredAttribute!= null)
+                    {
+                        //Успешно загрузли нехранимые объекты.
+                        sb.Append($"Класс {t} не должен храниться в БД {Environment.NewLine}");
+                    }
+                    else
+                    {
+                        //Хранимые объекты загружены нормально.
+                    }
+                }
+                catch (Exception)
+                {
+                    if (notStoredAttribute == null)
+                    {
+                        //Не загрузились хранимые объекты
+                        sb.Append($"Несоответствие в классе {t} {Environment.NewLine}");
+                    }
+                    else
+                    {
+                        //Нехранимые объекты не загрузились.
+                    }
+
                 }
             }
-            
-            
-            catch (Exception e)
+
+            if (sb.Length != 0)
             {
-                if (stored)
-                {
-                    Assert.Fail($"Несответствие в классе {typeof(T)}. Исключение: {e.Message}");
-                }
+                Assert.Fail(sb.ToString());
             }
         }
         
